@@ -10,7 +10,7 @@ README nội bộ giữa hai thành viên, dùng để thống nhất cách chia
 ## Cách mở project
 
 1. Clone repo về máy.
-2. Mở KiCad 10.0, chọn `File > Open Project`, trỏ tới `hardware/yolo_uno.kicad_pro`.
+2. Mở KiCad 10.0, chọn `File > Open Project`, trỏ tới `hardware/yolo_uno/yolo_uno.kicad_pro`.
 3. Thư viện riêng của dự án nằm trong `libs/` và được khai báo bằng đường dẫn tương đối (`${KIPRJMOD}`). Không cần cài thêm gì. Nếu KiCad báo thiếu symbol hoặc footprint, kiểm tra lại `Preferences > Manage Symbol/Footprint Libraries > Project Specific Libraries`.
 
 ## Cấu trúc thư mục
@@ -22,10 +22,12 @@ README nội bộ giữa hai thành viên, dùng để thống nhất cách chia
 | `docs/` | Spec, bảng pin mapping, bảng ngân sách dòng, danh sách linh kiện, báo cáo |
 | `datasheets/` | Datasheet linh kiện |
 
+**Lưu ý**: đường dẫn thư viện dùng `${KIPRJMOD}/../../libs/...` .
+
 ## Ba sheet và các khối thuộc về từng sheet
+![Sơ đồ khối của dự án](img\block_diagram_yoloUNO.png)
 
 Sheet gốc (`yolo_uno.kicad_sch`) chỉ chứa 3 khối hộp và dây nối giữa chúng, không vẽ linh kiện.
-![Sơ đồ khối của dự án](img\block_diagram_yoloUNO.png)
 
 ### `power` (`power.kicad_sch`) – người phụ trách: bạn cùng nhóm
 - Jack DC 5521, bảo vệ ngược cực, TVS chống quá áp
