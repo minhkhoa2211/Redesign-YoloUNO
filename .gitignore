@@ -1,0 +1,50 @@
+# ===== KiCad: file sinh tự động =====
+# Thư mục sao lưu KiCad tự tạo (vd: yolo_uno-backups/)
+*-backups/
+
+# File autosave và file khóa khi đang mở
+_autosave-*
+*.lck
+~*.lck
+
+# File sao lưu / tạm
+*.bak
+*.tmp
+*.000
+
+# Cache footprint và file thư viện cũ
+fp-info-cache
+*-cache.lib
+*-rescue.lib
+*-rescue.dcm
+
+# Trạng thái giao diện riêng từng máy (vị trí cửa sổ, lớp đang hiển thị...)
+*.kicad_prl
+
+# ===== Lưu ý: KHÔNG ignore các file sau, phải commit =====
+# *.kicad_pro, *.kicad_sch, *.kicad_pcb
+# sym-lib-table, fp-lib-table (khai báo thư viện riêng của dự án)
+# libs/ (symbol, footprint, mô hình 3D)
+
+# ===== File xuất ra để sản xuất (bỏ comment nếu không muốn commit) =====
+# gerbers/
+# production/
+# *.zip
+
+# ===== Hệ điều hành =====
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== Editor =====
+.vscode/
+.idea/
+
+# Bỏ qua thư mục lịch sử và backup
+.history/
+*-backups/
+
+# Bỏ qua file khóa và file cá nhân của KiCad
+*.lck
+*.kicad_prl
+fp-info-cache
