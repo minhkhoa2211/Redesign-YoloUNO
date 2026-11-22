@@ -28,7 +28,7 @@
 				)
 			)
 		)
-		(property "Footprint" "RF_Module:ESP32-S3-WROOM-1"
+		(property "Footprint" "lib_ver1_footprint:ESP32-S3-WROOM-1"
 			(at 0 2.54 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -893,7 +893,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_PH_B4B-PH-SM4-TB_1x04-1MP_P2.00mm_Vertical"
+		(property "Footprint" "lib_ver1_footprint:Grove_4pin_SMD"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1109,7 +1109,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical"
+		(property "Footprint" "lib_ver1_footprint:Header_UNO_1x06"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1383,7 +1383,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical"
+		(property "Footprint" "lib_ver1_footprint:Header_UNO_1x08"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -1715,7 +1715,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_PinSocket_2.54mm:PinSocket_1x08_P2.54mm_Vertical"
+		(property "Footprint" "lib_ver1_footprint:Header_UNO_1x10"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2104,7 +2104,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Connector_JST:JST_SH_SM04B-SRSS-TB_1x04-1MP_P1.00mm_Horizontal"
+		(property "Footprint" "lib_ver1_footprint:QWIIC_4pin_RA"
 			(at 0 0 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -2324,7 +2324,7 @@
 				)
 			)
 		)
-		(property "Footprint" "Button_Switch_SMD:SW_SPST_PTS810"
+		(property "Footprint" "lib_ver1_footprint:Switch_3x4mm"
 			(at 0 5.08 0)
 			(show_name no)
 			(do_not_autoplace no)
