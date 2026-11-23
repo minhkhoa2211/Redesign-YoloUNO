@@ -24,12 +24,12 @@ Công thức vật lý thuần (ví dụ $\eta_{LDO}=V_{out}/V_{in}$) không c�
 
 | # | Kết luận | Số liệu then chốt |
 |---|---|---|
-| 1 | Dòng `+3V3` worst-case **vượt** mốc 800 mA của đề | 853 mA → LDO nên chọn loại **≥ 1 A** |
-| 2 | Dòng Buck 5 V cần tới **3.43 A** nếu không giới hạn NeoPixel; **3.01 A** nếu firmware giới hạn NeoPixel ≤ 20 mA/LED | LDO 5 V (AMS1117-5.0) loại ngay: tỏa 16.2 W |
-| 3 | Jack 6 V là góc khó nhất: dòng vào lớn, $V_{IN}$ tại Buck chỉ còn ≈ 5.78 V | TPS5430 ($V_{IN\_MIN}$ = 5.5 V) bị loại |
+| 1 | Dòng `+3V3` worst-case **853 mA** (vượt mốc 800 mA của đề); chuyển sang Buck đồng bộ **AP63203 (2 A)** | Dư gấp đôi nhu cầu (biên an toàn 134 %), $V_{IN\_MIN} = 3.8\text{ V}$ an toàn tuyệt đối với USB |
+| 2 | Dòng Buck 5 V tối thiểu cần **2.58 A** ($1.3 \times 1986\text{ mA}$); chọn Buck **3.0 A (MP1584)** đạt biên an toàn **51.1 %** ($\ge 30\%$ `[Đề]`) | Tiết kiệm 232 mA từ rail 5V nhờ Buck 3.3 V; LDO 5 V (AMS1117-5.0) loại ngay: tỏa 13.9 W |
+| 3 | Jack 6 V là góc khó nhất: dòng vào lớn (1.88 A), $V_{IN}$ tại Buck chỉ còn ≈ 5.81 V | TPS5430 ($V_{IN\_MIN}$ = 5.5 V) bị loại |
 | 4 | TVS phải thỏa chuỗi: $V_{no\text{-}load} \le V_{RWM}$ và $V_C < V_{IN\_MAX}$ của Buck | SMBJ15A có thể rò khi adapter hở mạch 17 V; SMBJ18A kẹp 29.2 V > 28 V của MP1584 |
-| 5 | Schottky OR-ing làm tụt `+5V` còn ≈ 4.5 V → LDO đời cũ hết dropout, servo yếu | Ideal-diode IC giữ 5.0 V ở cùng dòng |
-| 6 | LDO SOT-223 ở tải đỉnh 853 mA **vượt giới hạn nhiệt** | $T_J$ ≈ 134–180 °C (peak), ≈ 93–119 °C (kéo dài) |
+| 5 | Schottky OR-ing làm tụt `+5V` còn ≈ 4.59 V → servo yếu; Ideal-diode IC (LM66200) giữ **5.01 V** ở cùng dòng | Biên dòng LM66200 đạt 25.9 % so với tải Worst-case 1.986 A |
+| 6 | Buck 3.3 V AP63203 **triệt tiêu hoàn toàn sự cố quá nhiệt** của LDO | Tỏa nhiệt đỉnh giảm từ 1.56 W xuống **0.31 W**; $T_J$ mát mẻ, không cần mảng đồng tản nhiệt lớn |
 
 ---
 
@@ -46,61 +46,77 @@ Công thức vật lý thuần (ví dụ $\eta_{LDO}=V_{out}/V_{in}$) không c�
 
 | # | Tải | Typical | Worst-case | Cơ sở |
 |---|---|---|---|---|
-| 1 | ESP32-S3-WROOM-1 | 120 mA `[Giả định: ƯL]` — trung bình khi Wi-Fi STA hoạt động | **500 mA** `[Đề]` — đỉnh Wi-Fi | Worst là đỉnh ngắn (burst TX), không kéo dài |
+| 1 | ESP32-S3-WROOM-1 | 120 mA `[Giả định: ƯL]` — trung bình khi Wi-Fi STA hoạt động (RX peak: 95–97 mA theo Bảng 6-4) | **500 mA** (Yêu cầu $I_{VDD} \ge 0.5\text{ A}$ của Datasheet) | **Đối chiếu Datasheet ESP32-S3-WROOM-1 (v1.8):**<br>- Bảng 6-2 (*Recommended Operating Conditions*): $I_{VDD}$ (Current delivered by external power supply) **Min = 0.5 A** (500 mA).<br>- Bảng 6-4 (*Wi-Fi Active Mode*): Đỉnh phát TX cực đại đạt **355 mA** (802.11b, 1 Mbps, @20.5 dBm); 297 mA (802.11g, 54 Mbps, @18 dBm); 286 mA (802.11n, HT20, @17.5 dBm); 285 mA (802.11n, HT40, @17 dBm). Đỉnh thu RX là 95 mA (HT20) / 97 mA (HT40).<br>- Bảng 6-5 (*Bluetooth LE Active Mode*): Đỉnh phát TX cực đại đạt **344 mA** (@20.0 dBm); 202 mA (@9.0 dBm); 187 mA (@0 dBm); 119 mA (@-15.0 dBm). Đỉnh thu RX là 93 mA.<br>→ Worst-case 500 mA trùng khớp yêu cầu cấp nguồn ngoài tối thiểu của hãng để chịu dòng đỉnh phát RF. |
 | 2 | 12 cổng Grove (3.3 V) | 60 mA = 4 module × 15 mA `[Giả định: KB]` | 300 mA = 12 × 25 mA `[Giả định: KB]` | `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: dòng thật từng module Grove — đo bằng USB power meter hoặc đọc datasheet module]` |
 | 3 | Cổng QWIIC | 10 mA `[Giả định: KB]` | 50 mA `[Giả định: KB]` | 1 cổng, vài cảm biến I²C |
 | 4 | LED PWR + D13 (1 kΩ, 0603) | 2 mA | 3 mA | $(3.3-2.1)/1\,\text{k}\Omega \approx 1.2$ mA/LED, $V_F \approx 2.1$ V `[Giả định: DS]`; giả định LED PWR cấp từ `+3V3` `[Giả định: KB]` |
 | | **Σ `+3V3`** | **192 mA** | **853 mA** | |
-| | *Σ kéo dài (ESP32 trung bình + tải Grove/QWIIC/LED worst)* | — | *473 mA* | Dùng cho tính nhiệt LDO ở mục 2.4 |
+| | *Σ kéo dài (ESP32 trung bình + tải Grove/QWIIC/LED worst)* | — | *473 mA* | Dùng cho tính công suất/nhiệt ở mục 2.4 |
 
-> ⚠️ **Phát hiện:** 853 mA > 800 mA (mốc của đề). Nếu giữ đúng 800 mA, nhóm phải giới hạn tổng dòng Grove ≤ 247 mA, hoặc chọn LDO **≥ 1 A** (biên 17 %). Tài liệu này chọn hướng thứ hai.
+> ⚠️ **Phát hiện & Giải pháp:** 853 mA > 800 mA (mốc của đề). Thay vì dùng LDO (bị quá nhiệt nghiêm trọng), khối 3.3 V được chốt dùng IC hạ áp xung đồng bộ **AP63203 (2 A)**, đáp ứng thoải mái dòng đỉnh phát Wi-Fi với hiệu suất 90 % và biên an toàn 134 %.
+
+### 0.2.1. Bảng thông số kỹ thuật thực tế từ Datasheet ESP32-S3-WROOM-1 (v1.8)
+
+Các số liệu dưới đây được trích xuất trực tiếp từ datasheet *ESP32-S3-WROOM-1 & WROOM-1U Datasheet v1.8* (thay thế hoàn toàn các giả định ước lượng trước đây liên quan đến thông số điện của MCU):
+
+| Bảng / Mục Datasheet | Thông số | Giá trị thực tế trong Datasheet | Ý nghĩa cho thiết kế khối nguồn |
+|---|---|---|---|
+| **Bảng 6-1**<br>Absolute Maximum Ratings | $VDD33$ (Power supply voltage)<br>$T_{STORE}$ (Storage temperature) | **Min -0.3 V, Max 3.6 V**<br>**Min -40 °C, Max 105 °C** | Vượt quá 3.6 V sẽ gây hỏng module vĩnh viễn. |
+| **Bảng 6-2**<br>Recommended Operating Conditions | $VDD33$ (Điện áp nguồn cấp khuyến nghị)<br>$I_{VDD}$ (Dòng cấp từ nguồn ngoài)<br>$T_A$ (Nhiệt độ môi trường làm việc) | **Min 3.0 V, Typ 3.3 V, Max 3.6 V**<br>**Min 0.5 A** (500 mA)<br>Bản 65 °C: Max 65 °C<br>Bản 85 °C: -40 °C đến 85 °C<br>Bản 105 °C: Max 105 °C | Nguồn cấp 3.3 V phải luôn duy trì điện áp ≥ 3.0 V (kể cả khi tải bước nhảy) và cấp dòng tối thiểu **≥ 0.5 A** cho riêng ESP32-S3. |
+| **Bảng 6-4**<br>Current Consumption for Wi-Fi in Active Mode (3.3 V, 25 °C) | **TX Peak (100% duty cycle):**<br>- 802.11b, 1 Mbps, @20.5 dBm<br>- 802.11g, 54 Mbps, @18 dBm<br>- 802.11n, HT20, MCS 7, @17.5 dBm<br>- 802.11n, HT40, MCS 7, @17 dBm<br>**RX Peak:**<br>- 802.11b/g/n, HT20<br>- 802.11n, HT40 | <br>**355 mA**<br>**297 mA**<br>**286 mA**<br>**285 mA**<br><br>**95 mA**<br>**97 mA** | Đỉnh dòng phát Wi-Fi đạt cực đại **355 mA** (chuẩn 11b @20.5 dBm). Đỉnh thu RX là 95–97 mA. |
+| **Bảng 6-5**<br>Current Consumption for Bluetooth LE in Active Mode (3.3 V, 25 °C) | **TX Peak:**<br>- Bluetooth LE @ 20.0 dBm<br>- Bluetooth LE @ 9.0 dBm<br>- Bluetooth LE @ 0 dBm<br>- Bluetooth LE @ -15.0 dBm<br>**RX Peak:**<br>- Bluetooth LE | <br>**344 mA**<br>**202 mA**<br>**187 mA**<br>**119 mA**<br><br>**93 mA** | Đỉnh dòng phát Bluetooth LE cực đại là **344 mA** (ở công suất tối đa 20 dBm). Đỉnh thu RX là 93 mA. |
+| **Bảng 6-3**<br>DC Characteristics (3.3 V, 25 °C) | $C_{IN}$ (Điện dung chân GPIO)<br>$V_{IH}$ (Điện áp vào mức cao)<br>$V_{IL}$ (Điện áp vào mức thấp)<br>$I_{IH}, I_{IL}$ (Dòng rò vào mức cao/thấp)<br>$V_{OH}$ (Điện áp ra mức cao)<br>$V_{OL}$ (Điện áp ra mức thấp)<br>$I_{OH}$ (Dòng source mức cao, PAD_DRIVER=3)<br>$I_{OL}$ (Dòng sink mức thấp, PAD_DRIVER=3)<br>$R_{PU}$ (Trở kéo lên nội yếu)<br>$R_{PD}$ (Trở kéo xuống nội yếu) | **Typ 2 pF**<br>**Min $0.75 \times VDD$, Max $VDD + 0.3\text{ V}$** (2.475 V – 3.6 V tại 3.3 V)<br>**Min -0.3 V, Max $0.25 \times VDD$** (-0.3 V – 0.825 V tại 3.3 V)<br>**Max 50 nA**<br>**Min $0.8 \times VDD$** (2.64 V tại 3.3 V)<br>**Max $0.1 \times VDD$** (0.33 V tại 3.3 V)<br>**Typ 40 mA** (khi $V_{OH} \ge 2.64\text{ V}$)<br>**Typ 28 mA** (khi $V_{OL} = 0.495\text{ V}$)<br>**Typ 45 kΩ**<br>**Typ 45 kΩ** | $V_{OH} \ge 2.64\text{ V} < 3.5\text{ V}$ ($V_{IH}$ của NeoPixel cấp 5 V) nên bắt buộc có Level-Shifter. Trở kéo nội 45 kΩ dùng để tính toán điện trở kéo ngoài (I2C/nút bấm). |
+| **Mục 5**<br>Peripherals (Reset Pin EN) | $V_{IH\_nRST}$ (Điện áp nhả reset chân EN)<br>$V_{IL\_nRST}$ (Điện áp reset chân EN) | **Min $0.75 \times VDD$, Max $VDD + 0.3\text{ V}$** (2.475 V – 3.6 V tại 3.3 V)<br>**Min -0.3 V, Max $0.25 \times VDD$** (-0.3 V – 0.825 V tại 3.3 V) | Căn cứ tính toán mạch reset RC cho chân EN, đảm bảo khi điện áp nguồn 3.3 V tụt thì chân EN kích hoạt reset đúng ngưỡng. |
 
 ## 0.3. Ngân sách dòng rail `+5V`
 
-| # | Tải | Typical | Worst-case (W1) | Worst-case có giới hạn NeoPixel (W2) | Cơ sở |
-|---|---|---|---|---|---|
-| 1 | 4 Servo SG90 | 4 × 100 = **400 mA** | 4 × 250 = **1000 mA** | 1000 mA | `[Giả định: KB — SG90: chạy không tải ≈ 100 mA, có tải ≈ 250 mA]`. Stall 650 mA/con (2600 mA cho 4 con) là **sự cố**, xem ghi chú dưới bảng |
-| 2 | NeoPixel WS2812B, 8 LED | 8 × 20 = **160 mA** | 8 × 60 = **480 mA** | 8 × 20 = **160 mA** | `[Giả định: KB — 8 LED; 60 mA/LED là trắng 100 %, 20 mA/LED ≈ 1/3 độ sáng]` |
-| 3 | Chân xuất `+5V` trên header | 100 mA | 300 mA | 300 mA | `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: nhóm cho phép shield/module ngoài lấy tối đa bao nhiêu mA từ chân +5V]` |
-| 4 | **Đầu vào LDO 3.3 V** = $I_{3V3} + I_{GND}$ | 192 + 5 = **197 mA** | 853 + 5 = **858 mA** | 858 mA | $I_{GND}\approx 5$ mA `[Giả định: DS — AMS1117; LDO hiện đại < 1 mA]` |
-| | **Σ `+5V`** | **857 mA** | **2638 mA** | **2318 mA** | |
+| # | Tải | Typical | Worst-case | Cơ sở |
+|---|---|---|---|---|
+| 1 | 4 Servo SG90 | 4 × 100 = **400 mA** | 4 × 250 = **1000 mA** | `[Giả định: KB — SG90: chạy không tải ≈ 100 mA, có tải ≈ 250 mA]`. Stall 650 mA/con (2600 mA cho 4 con) là **sự cố**, xem ghi chú dưới bảng |
+| 2 | 1× NeoPixel WS2812B onboard | **20 mA** | **60 mA** | `[Đề]` — 1 LED WS2812B onboard cấp nguồn `+5V`; Typical = 20 mA, Worst-case (sáng trắng 100%, RGB = 255) = 60 mA |
+| 3 | Chân xuất `+5V` trên header | 100 mA | 300 mA | `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: nhóm cho phép shield/module ngoài lấy tối đa bao nhiêu mA từ chân +5V]` |
+| 4 | **Đầu vào Buck 3.3 V (AP63203)** | **141 mA** | **626 mA** | Quy đổi công suất qua Buck ($\eta = 90\%$ `[Giả định: ƯL]`): $I_{in} = \frac{3.3 \times I_{3V3}}{0.90 \times 5.0}$; tiết kiệm 56 mA (Typ) và 232 mA (Worst) so với LDO |
+| | **Σ `+5V`** | **661 mA** | **1986 mA** | |
 
-**Ghi chú stall:** nếu cả 4 servo kẹt cùng lúc + NeoPixel trắng: 2600 + 480 + 300 + 858 = **4238 mA**. Đây là sự cố cơ khí, **không dùng để chọn Buck** (sẽ ra Buck ≥ 5.5 A, phi thực tế); xử lý bằng giới hạn dòng của Buck và firmware dừng servo khi kẹt.
+**Ghi chú stall:** nếu cả 4 servo kẹt cùng lúc + NeoPixel trắng: 2600 + 60 + 300 + 626 = **3586 mA**. Đây là sự cố cơ khí, **không dùng để chọn Buck** (sẽ ra Buck ≥ 4.7 A, phi thực tế); xử lý bằng giới hạn dòng của Buck và firmware dừng servo khi kẹt.
 
-## 0.4. Chứng minh cộng dồn dòng `+3V3` → `+5V`
+## 0.4. Công thức quy đổi dòng `+3V3` → `+5V` qua Buck 3.3 V
 
-LDO là bộ ổn áp tuyến tính: dòng ra bằng dòng vào trừ dòng chân GND.
+Khác với LDO (vốn có $I_{in} \approx I_{out}$ và đốt phần áp thừa thành nhiệt), Buck 3.3 V (**AP63203**) hoạt động theo nguyên lý bảo toàn công suất với hiệu suất cao ($\eta = 90\%$ `[Giả định: ƯL]`):
 
-$$I_{LDO,in} = I_{3V3} + I_{GND}$$
+$$P_{in} = \frac{P_{out}}{\eta} \iff 5.0\,\text{V} \cdot I_{Buck3V3,in} = \frac{3.3\,\text{V} \cdot I_{3V3}}{\eta}$$
 
-Công suất lấy từ `+5V` cho nhánh 3.3 V:
+Suy ra công thức dòng rút từ rail `+5V` để nuôi khối 3.3 V:
 
-$$P_{in} = 5\,V \cdot I_{LDO,in} = \underbrace{3.3\,V \cdot I_{3V3}}_{\text{tải thật}} + \underbrace{(5-3.3)\,V \cdot I_{3V3}}_{\text{tỏa nhiệt trên LDO}} + 5\,V \cdot I_{GND}$$
+$$I_{Buck3V3,in} = \frac{3.3\,\text{V} \cdot I_{3V3}}{\eta \cdot 5.0\,\text{V}} = \frac{3.3}{4.5} \cdot I_{3V3} \approx 0.733 \times I_{3V3}$$
 
-Vì vậy **mọi mA ở `+3V3` đều là mA ở `+5V`**:
+- **Typical ($I_{3V3} = 192\text{ mA}$):** $I_{Buck3V3,in} = \frac{3.3 \times 192}{0.90 \times 5.0} \approx \mathbf{141\text{ mA}}$ (tiết kiệm 56 mA so với mức 197 mA của LDO).
+- **Worst-case ($I_{3V3} = 853\text{ mA}$):** $I_{Buck3V3,in} = \frac{3.3 \times 853}{0.90 \times 5.0} \approx \mathbf{626\text{ mA}}$ (tiết kiệm **232 mA** so với mức 858 mA của LDO).
 
-$$I_{5V,total} = I_{servo} + I_{neo} + I_{hdr} + I_{3V3} + I_{GND}$$
+Tổng dòng yêu cầu trên rail `+5V`:
 
-$$\text{W1: } 1000 + 480 + 300 + 853 + 5 = 2638\ \text{mA}$$
-$$\text{W2: } 1000 + 160 + 300 + 853 + 5 = 2318\ \text{mA}$$
+$$I_{5V,total} = I_{servo} + I_{neo} + I_{hdr} + I_{Buck3V3,in}$$
 
-## 0.5. Dòng tối thiểu cần chốt cho Buck 5 V và LDO 3.3 V
+$$\text{Worst-case: } 1000 + 60 + 300 + 626 = \mathbf{1986\ mA}$$
+$$\text{Typical: } 400 + 20 + 100 + 141 = \mathbf{661\ mA}$$
 
-$$I_{Buck,min} = 1.3 \times I_{5V,worst}$$
+## 0.5. Dòng tối thiểu cần chốt cho Buck 5 V và Buck 3.3 V
+
+$$I_{Buck5V,min} = 1.3 \times I_{5V,worst} = 1.3 \times 1986\ \text{mA} = \mathbf{2.58\ A}$$
 
 | Kịch bản | $I_{5V}$ | × 1.3 (hệ số an toàn ≥ 30 % `[Đề]`) | Nhận xét |
 |---|---|---|---|
-| Typical | 857 mA | — | Chỉ để tính hiệu suất/nhiệt |
-| **W1** — không giới hạn NeoPixel | 2638 mA | **3.43 A** | Cần Buck lớp 4–5 A |
-| **W2** — firmware giới hạn NeoPixel ≤ 20 mA/LED | 2318 mA | **3.01 A** | Vừa khít Buck 3 A (biên thực tế 29.4 %, tức ≈ 30 %) |
-| Stall (tham khảo) | 4238 mA | 5.51 A | Không dùng chọn linh kiện |
+| Typical | 661 mA | — | Chỉ để tính hiệu suất/nhiệt |
+| **Worst-case** (NeoPixel trắng 100%) | 1986 mA | **2.58 A** | Chọn Buck **3.0 A (MP1584)** đạt biên an toàn thực tế **51.1 %** ($\ge 30\%$ `[Đề]`), vượt xa yêu cầu đề bài |
+| Stall (tham khảo) | 3586 mA | 4.66 A | Không dùng chọn linh kiện |
 
-- **Buck 5 V:** tối thiểu **3.0 A** nếu nhóm chấp nhận giới hạn NeoPixel bằng firmware (W2); nếu không, **≥ 3.5 A** (lớp 4–5 A).
-- **LDO 3.3 V:** worst 853 mA → chọn **≥ 1 A** (mốc đề 800 mA không đủ biên).
+- **Buck 5 V:** chọn **3.0 A (MP1584)**; dòng yêu cầu tối thiểu 2.58 A, định mức 3.0 A đạt biên an toàn thực tế **51.1 %** so với mức Worst-case 1.986 A (thỏa mãn và vượt xa mốc $\ge 30\%$ `[Đề]`).
+- **Khối 3.3 V:** chọn IC Buck đồng bộ **AP63203 (2 A)**; dòng tải Worst-case 853 mA chỉ chiếm 42.7 % định mức (biên an toàn 134 %, vượt xa mốc 800 mA của đề).
 
 ## 0.6. Ràng buộc khi chạy chỉ bằng USB
 
-Host USB 2.0 cấp 500 mA `[Đề]`. Trừ phần LDO 3.3 V (197 mA) còn **303 mA** cho servo + NeoPixel + header, trong khi nhu cầu Typical là 400 + 160 + 100 = **660 mA**. Kết luận: khi chỉ cắm USB, firmware **phải** hạn chế servo/NeoPixel.
+Host USB 2.0 cấp 500 mA `[Đề]`. Trừ phần đầu vào Buck 3.3 V (141 mA) còn **359 mA** cho các tải 5 V (dư hơn 56 mA so với dùng LDO), trong khi nhu cầu Typical tải 5 V là 400 + 20 + 100 = **520 mA**. 
+Kết luận: 1 NeoPixel (20–60 mA) chạy hoàn toàn bình thường trên USB, nhưng firmware **vẫn phải** hạn chế số servo chạy đồng thời khi chỉ cắm nguồn USB.
 `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: GPIO nào đo VBUS/nhận biết nguồn đang dùng — nhóm MCU quyết định]`
 
 ---
@@ -128,9 +144,9 @@ Host USB 2.0 cấp 500 mA `[Đề]`. Trừ phần LDO 3.3 V (197 mA) còn **303 
                                   ▼ +5V
         ┌─────────────────────────┼───────────────────────────┐
         ▼                         ▼                           ▼
-   4× Servo header     NeoPixel (qua level-shifter       [LDO 3.3 V ≥ 1 A]
-   + chân xuất +5V     74AHCT125, VCC = +5V)                   │ +3V3
-                                                               ▼
+   4× Servo header     1× NeoPixel onboard            [Buck 3.3 V fixed (AP63203, 2 A)]
+   + chân xuất +5V     (qua 74AHCT1G125, VCC = +5V,          │ +3V3
+                       Data từ GPIO45)                        ▼
                                           ESP32-S3-WROOM-1 · 12× Grove · QWIIC · LED
 ```
 
@@ -139,14 +155,14 @@ Host USB 2.0 cấp 500 mA `[Đề]`. Trừ phần LDO 3.3 V (197 mA) còn **303 
 | Net | Vị trí vật lý | Ý nghĩa / điện áp dự kiến |
 |---|---|---|
 | `VIN_RAW` | Chân + jack DC, **trước** mọi bảo vệ | 6–12 V (hở mạch tới 17 V `[Giả định: ƯL]`), có thể có xung cắm nóng |
-| `VIN_FUSED` | Sau PTC | Như `VIN_RAW` trừ sụt áp PTC (≈ 0.09 V ở 2.2 A `[Giả định: DS]`); TVS đặt tại nút này |
-| `VIN_PROT` | Sau P-MOS chống ngược cực, vào chân VIN của Buck | ≈ 5.78 V (tối thiểu, adapter 6 V) → 12 V; **luôn dương**, không bao giờ âm |
+| `VIN_FUSED` | Sau PTC | Như `VIN_RAW` trừ sụt áp PTC (≈ 0.075 V ở 1.88 A `[Giả định: DS]`); TVS đặt tại nút này |
+| `VIN_PROT` | Sau P-MOS chống ngược cực, vào chân VIN của Buck | ≈ 5.81 V (tối thiểu, adapter 6 V) → 12 V; **luôn dương**, không bao giờ âm |
 | `SW_BUCK` | Nút đóng cắt của Buck | Xung vuông, nút nhiễu lớn nhất — giữ nhỏ, xa FB |
 | `+5V_BUCK` | Đầu ra Buck, trước ideal-diode | 5.09 V đặt bằng FB `[Giả định: ƯL]` (xem mục 2.2) |
 | `VBUS_RAW` | Chân VBUS của USB-C | 4.75–5.25 V `[Đề]` |
 | `VBUS` | Sau PTC USB | Nguồn USB đã bảo vệ, vào kênh IN2 của ideal-diode |
-| `+5V` | **Rail hệ thống 5 V** sau khối chọn nguồn | Cấp servo, NeoPixel, header +5V, đầu vào LDO |
-| `+3V3` | Đầu ra LDO | Cấp ESP32-S3, Grove, QWIIC, LED |
+| `+5V` | **Rail hệ thống 5 V** sau khối chọn nguồn | Cấp servo, NeoPixel, header +5V, đầu vào Buck 3.3 V |
+| `+3V3` | Đầu ra Buck 3.3 V (AP63203) | Cấp ESP32-S3, Grove, QWIIC, LED |
 | `GND` | Mặt đất chung | Một plane duy nhất, không tách |
 | `CC1`, `CC2` | Chân cấu hình USB-C | Mỗi chân qua 5.1 kΩ xuống GND |
 
@@ -159,6 +175,7 @@ Host USB 2.0 cấp 500 mA `[Đề]`. Trừ phần LDO 3.3 V (197 mA) còn **303 
 | `GND` | Chung | | |
 | `USB_D+` | Power ↔ MCU | Từ USB-C qua ESD tới GPIO20 (D+) của ESP32-S3 `[Giả định: DS]` | Cặp vi sai, giữ ngắn |
 | `USB_D-` | Power ↔ MCU | Tới GPIO19 (D−) `[Giả định: DS]` | |
+| `NEO_DATA` | MCU → Power/Peripherals | Tín hiệu điều khiển NeoPixel từ GPIO45 qua 74AHCT1G125 (VCC = 5 V) kèm R 330 Ω | GPIO45 là chân strapping (VDD_SPI), **cấm gắn trở pull-up** |
 | `EN` | Nội bộ MCU | Nút Reset + RC; **không** thuộc Power Sheet | Chỉ liệt kê để rõ ranh giới |
 | `VBUS_SENSE` (tùy chọn) | Power → MCU | Chia áp 100 kΩ/100 kΩ → ADC (5.25 V → 2.63 V < 3.3 V) | `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: GPIO ADC còn trống; nhóm MCU chốt pin-map]` |
 | `PWR_SRC` / `PWR_GOOD` (tùy chọn) | Power → MCU | Trạng thái nguồn đang dùng (chân ST của ideal-diode) hoặc PG của Buck | `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: có cần firmware biết nguồn hay không; nếu có thì GPIO nào]` |
@@ -175,23 +192,23 @@ Dòng vào jack suy từ công suất: $I_{IN} = \dfrac{5\,V \cdot I_{5V}}{\eta 
 
 | Điểm làm việc | $I_{IN}$ | SS34: $V_F$ `[Giả định: DS]` | SS34: $P_{loss}=V_F I$ | P-MOS $R_{DS(on)}$ = 60 mΩ `[Giả định: DS]`: $\Delta V = I R$ | P-MOS: $P_{loss}=I^2R$ |
 |---|---|---|---|---|---|
-| 12 V, Typ (857 mA) | 0.40 A | 0.35 V | 0.14 W | 0.024 V | **0.010 W** |
-| 12 V, W2 (2318 mA) | 1.10 A | 0.42 V | 0.46 W | 0.066 V | **0.073 W** |
-| 6 V, W2 (2318 mA) | 2.2 A | 0.50 V | **1.10 W** | 0.132 V | **0.29 W** |
+| 12 V, Typ (661 mA) | 0.31 A | 0.35 V | 0.11 W | 0.019 V | **0.006 W** |
+| 12 V, Worst (1986 mA) | 0.94 A | 0.42 V | 0.39 W | 0.056 V | **0.053 W** |
+| 6 V, Worst (1986 mA) | 1.88 A | 0.50 V | **0.94 W** | 0.113 V | **0.21 W** |
 
-Tỷ lệ tổn hao SS34 / P-MOS: 14× · 6.3× · 3.8×.
+Tỷ lệ tổn hao SS34 / P-MOS: 18× · 7.4× · 4.5×.
 
-**Hệ quả lên Buck ở góc 6 V** (đã trừ PTC 40 mΩ × 2.2 A = 0.09 V `[Giả định: DS]`):
+**Hệ quả lên Buck ở góc 6 V** (đã trừ PTC 40 mΩ × 1.88 A = 0.075 V `[Giả định: DS]`):
 
 | Phương án | $V_{IN}$ tại Buck (adapter 6.0 V) | Adapter −5 % (5.7 V) |
 |---|---|---|
-| SS34 | 6.0 − 0.50 − 0.09 = **5.41 V** | 5.11 V |
-| P-MOS | 6.0 − 0.13 − 0.09 = **5.78 V** | 5.48 V |
+| SS34 | 6.0 − 0.50 − 0.075 = **5.43 V** | 5.13 V |
+| P-MOS | 6.0 − 0.113 − 0.075 = **5.81 V** | 5.51 V |
 
 | | **Schottky SS34** | **P-MOS ideal diode** |
 |---|---|---|
-| **Lợi** | 1 linh kiện, không có lỗi mạch gate, rẻ | Sụt áp nhỏ (0.13 V so với 0.5 V), tỏa nhiệt ≤ 0.29 W, giữ thêm ≈ 0.37 V cho Buck ở jack 6 V |
-| **Hại** | Tỏa tới 1.1 W trên 1 linh kiện SMC; làm $V_{IN}$ xuống 5.41 V — sát $V_{IN\_MIN}$ nhiều Buck | Cần Zener + R gate; sai chiều Drain/Source sẽ mất bảo vệ |
+| **Lợi** | 1 linh kiện, không có lỗi mạch gate, rẻ | Sụt áp nhỏ (0.113 V so với 0.50 V), tỏa nhiệt ≤ 0.21 W, giữ thêm ≈ 0.38 V cho Buck ở jack 6 V ($V_{IN}$ đạt 5.81 V, adapter −5 % vẫn đạt 5.51 V) |
+| **Hại** | Tỏa tới 0.94 W trên 1 linh kiện SMC; làm $V_{IN}$ xuống 5.43 V — sát $V_{IN\_MIN}$ nhiều Buck | Cần Zener + R gate; sai chiều Drain/Source sẽ mất bảo vệ |
 
 **Khuyến nghị: P-MOSFET** (loại −30 V, $V_{GS(max)}$ ±12 V, $R_{DS(on)}$ ≤ 60 mΩ tại $V_{GS}$ = −4.5 V, ví dụ AO3401A `[Giả định: DS]`). Cấu hình: **Drain nối `VIN_FUSED`, Source nối `VIN_PROT`** (body-diode dẫn theo chiều vào tải); Gate qua 100 kΩ xuống GND.
 
@@ -240,13 +257,13 @@ Tụ vào của Buck: dùng loại **≥ 35 V** (tụ gốm 25 V mất rất nhi
 
 ### 2.1.4. Cầu chì tự phục hồi (PTC)
 
-- **Chọn:** dòng giữ ≥ dòng vào worst × hệ số suy giảm theo nhiệt: $I_{hold} \ge 2.2\,A / 0.8 \approx 2.75\,A$ → **PTC 3 A hold** `[Giả định: ƯL — hold giảm ≈ 20 % ở 60 °C]`, điện áp định mức ≥ 24 V.
-- **Sụt áp:** $R \approx 40\,m\Omega$ `[Giả định: DS]` → 0.09 V ở 2.2 A; tỏa 0.19 W.
+- **Chọn:** dòng giữ ≥ dòng vào worst × hệ số suy giảm theo nhiệt: $I_{hold} \ge 1.88\,A / 0.8 \approx 2.35\,A$ → **PTC 3 A hold** `[Giả định: ƯL — hold giảm ≈ 20 % ở 60 °C]`, điện áp định mức ≥ 24 V.
+- **Sụt áp:** $R \approx 40\,m\Omega$ `[Giả định: DS]` → 0.075 V ở 1.88 A; tỏa 0.14 W.
 
 | | |
 |---|---|
 | **Lợi** | Bảo vệ đường đồng và adapter khi ngắn mạch phía sau; kết hợp TVS: nếu cắm nhầm adapter 24 V, TVS dẫn mạnh → PTC ngắt, TVS sống sót |
-| **Hại** | Thêm 0.09 V sụt áp; **không** bảo vệ xung nhanh (cắt sau hàng giây) — đó là việc của TVS; hold current suy giảm khi nóng |
+| **Hại** | Thêm 0.075 V sụt áp; **không** bảo vệ xung nhanh (cắt sau hàng giây) — đó là việc của TVS; hold current suy giảm khi nóng |
 
 **Thứ tự đặt:** `Jack → PTC → TVS → P-MOS → Buck`. PTC đứng trước TVS để TVS không bị dòng kéo dài đốt cháy.
 
@@ -256,7 +273,7 @@ Tụ vào của Buck: dùng loại **≥ 35 V** (tụ gốm 25 V mất rất nhi
 
 ### 2.2.1. Bảng so sánh
 
-Điểm tính: $V_{IN}$ = 12 V; Typ = 857 mA; W2 = 2318 mA. Tất cả thông số IC `[Giả định: DS]`, hiệu suất `[Giả định: ƯL]`.
+Điểm tính: $V_{IN}$ = 12 V; Typ = 661 mA; Worst = 1986 mA. Tất cả thông số IC `[Giả định: DS]`, hiệu suất `[Giả định: ƯL]`.
 
 | Tiêu chí | **AMS1117-5.0** (LDO) | **MP1584** | **TPS54202** | **TPS5430** | **AP63205** |
 |---|---|---|---|---|---|
@@ -265,21 +282,21 @@ Tụ vào của Buck: dùng loại **≥ 35 V** (tụ gốm 25 V mất rất nhi
 | Dòng tối đa | 1 A | **3 A** | 2 A | **3 A** | 2 A |
 | Tần số đóng cắt | — | 100 kHz–1.5 MHz (hay dùng 1.5 MHz) | 500 kHz | 500 kHz | 1.1 MHz |
 | **1) Hiệu suất** | 41.7 % ($=5/12$) | 88 % | 90 % | 90 % | 90 % |
-| **2a) Tỏa nhiệt @ Typ 0.857 A** | **6.0 W** ($=7\,V \times 0.857\,A$) | 0.58 W | 0.48 W | 0.48 W | 0.48 W |
-| **2b) Tỏa nhiệt @ W2 2.318 A** | **16.2 W** | 1.58 W | không đạt (2 A < 2.318 A) | 1.29 W | không đạt |
-| **3) Dòng tải tối đa** | 1 A ❌ | 3 A ✅ biên 29.4 % | 2 A ❌ | 3 A ✅ biên 29.4 % | 2 A ❌ |
+| **2a) Tỏa nhiệt @ Typ 0.661 A** | **4.63 W** ($=7\,V \times 0.661\,A$) | 0.45 W | 0.37 W | 0.37 W | 0.37 W |
+| **2b) Tỏa nhiệt @ Worst 1.986 A** | **13.9 W** ($=7\,V \times 1.986\,A$) | 1.35 W | 1.10 W (sát 2 A) | 1.10 W | 1.10 W (sát 2 A) |
+| **3) Dòng tải tối đa** | 1 A ❌ | 3 A ✅ biên **51.1 %** | 2 A ⚠️ sát 1.986 A | 3 A ✅ biên **51.1 %** | 2 A ⚠️ sát 1.986 A |
 | **4) Linh kiện ngoại vi** (số cái) | ≈ 3 | ≈ 9 (L, D, Cin, Cout, Cboot, R1, R2…) | ≈ 7 | ≈ 9 | **≈ 5** (L, Cin, Cout, Cboot…) |
-| **5) Diện tích PCB** `[Giả định: ƯL — gồm cuộn cảm + tụ + diode]` | 60 mm² chưa tính đồng tản nhiệt (cần ≫ 16 W → không khả thi) | ≈ 150 mm² | ≈ 100 mm² | ≈ 220 mm² | ≈ 90 mm² |
-| $V_{IN}$ thực tại Buck @ jack 6 V = **5.78 V** | ❌ (< 6.3 V) | ✅ dư 1.28 V | ✅ dư 1.28 V | ⚠️ dư 0.28 V; adapter −5 % → 5.48 V < 5.5 V ❌ | ✅ dư 1.98 V |
+| **5) Diện tích PCB** `[Giả định: ƯL — gồm cuộn cảm + tụ + diode]` | 60 mm² chưa tính đồng tản nhiệt (cần ≫ 13 W → không khả thi) | ≈ 150 mm² | ≈ 100 mm² | ≈ 220 mm² | ≈ 90 mm² |
+| $V_{IN}$ thực tại Buck @ jack 6 V = **5.81 V** | ❌ (< 6.3 V) | ✅ dư 1.31 V | ✅ dư 1.31 V | ⚠️ dư 0.31 V; adapter −5 % → 5.51 V sát 5.5 V ❌ | ✅ dư 2.01 V |
 | $V_{IN}$ hở mạch 17 V | ❌ vượt 15 V | ✅ | ✅ | ✅ | ✅ |
 
 Công thức tỏa nhiệt: $P_{diss} = P_{out}\,\dfrac{1-\eta}{\eta}$; riêng LDO $P = (V_{IN}-V_{out})\,I$.
 
 ### 2.2.2. Phân tích sâu
 
-1. **LDO 5 V bị loại hoàn toàn.** 16.2 W trên SOT-223 vượt xa khả năng tản (xem mục 2.4: ≈ 1 W đã vượt). Ngoài ra AMS1117-5.0 cần $V_{IN}$ ≥ ≈ 6.3 V nên không bao giờ ra được 5 V khi jack 6 V.
-2. **$V_{IN\_MIN}$ và jack 6 V.** Sau PTC + P-MOS còn 5.78 V (5.48 V nếu adapter −5 %). TPS5430 chỉ dư 0.28 V → loại. MP1584 và TPS54202 dư 1.28 V.
-3. **Cảnh báo duty cycle ở 6 V (áp dụng mọi Buck).** Để ra 5.09 V từ 5.78 V cần duty ≈ 88 % *và* bù thêm sụt áp nội trở: $I \times (R_{DS(on)} + R_{DCR}) \approx 2.3\,A \times (0.13 + 0.05)\,\Omega \approx 0.41\,V$ `[Giả định: ƯL]` → cần ≥ ≈ 5.5 V. Ở góc **6 V + tải W2** Buck gần hoặc chạm dropout, `+5V` có thể tụt nhẹ (≈ 4.9–5.0 V).
+1. **LDO 5 V bị loại hoàn toàn.** 13.9 W trên SOT-223 vượt xa khả năng tản (xem mục 2.4: ≈ 1 W đã vượt). Ngoài ra AMS1117-5.0 cần $V_{IN}$ ≥ ≈ 6.3 V nên không bao giờ ra được 5 V khi jack 6 V.
+2. **$V_{IN\_MIN}$ và jack 6 V.** Sau PTC + P-MOS còn 5.81 V (5.51 V nếu adapter −5 %). TPS5430 chỉ dư 0.31 V (adapter −5 % còn 5.51 V sát ngưỡng $V_{IN\_MIN} = 5.5\text{ V}$) → loại. MP1584 và TPS54202 dư 1.31 V.
+3. **Cảnh báo duty cycle ở 6 V (áp dụng mọi Buck).** Để ra 5.09 V từ 5.81 V cần duty ≈ 88 % *và* bù thêm sụt áp nội trở: $I \times (R_{DS(on)} + R_{DCR}) \approx 1.88\,A \times (0.13 + 0.05)\,\Omega \approx 0.34\,V$ `[Giả định: ƯL]` → cần ≥ ≈ 5.43 V. Ở góc **6 V + tải Worst-case** Buck hoạt động an toàn hơn nhiều so với trước, `+5V` duy trì ổn định.
    `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: đọc datasheet MP1584 các mục "Maximum Duty Cycle", "Minimum Off-Time", "Dropout" ở fsw đã chọn; hạ fsw xuống ≈ 500 kHz nếu cần tăng duty tối đa]`
 4. **Tần số đóng cắt (trade-off).**
 
@@ -299,9 +316,8 @@ Công thức tỏa nhiệt: $P_{diss} = P_{out}\,\dfrac{1-\eta}{\eta}$; riêng L
 
 ### 2.2.3. Khuyến nghị chốt
 
-**MP1584 bản adjustable, đặt 5.09 V.** Là phương án duy nhất trong 4 IC vừa đạt dòng 3 A vừa có $V_{IN\_MIN}$ = 4.5 V. Điều kiện kèm theo:
-1. Firmware giới hạn NeoPixel ≤ 20 mA/LED (kịch bản W2), hoặc nhóm đổi sang Buck 5 A (ví dụ TPS54540, 4.5–42 V `[Giả định: DS]`) nếu muốn W1.
-2. Xác nhận duty cycle/dropout MP1584 như mục trên.
+**MP1584 bản adjustable, đặt 5.09 V.** Là phương án tối ưu vừa đạt dòng 3 A (biên an toàn thực tế **51.1 %** so với mức Worst-case 1986 mA, vượt xa yêu cầu $\ge 30\%$ `[Đề]`) vừa có $V_{IN\_MIN}$ = 4.5 V, ngay cả khi NeoPixel sáng trắng 100 %, không cần firmware giới hạn độ sáng LED.
+Điều kiện kèm theo: Xác nhận duty cycle/dropout MP1584 như mục trên.
 
 ---
 
@@ -324,34 +340,42 @@ Khi cắm đồng thời 2 nguồn mà không có cách ly:
 |---|---|---|---|---|
 | Chặn dòng ngược | Có (mỗi nhánh 1 diode) | Có cho USB; Buck nối thẳng, cần EN/UVLO | Có (chặn ngược thật) | Có |
 | Thông số chính `[Giả định: DS]` | $V_F$ 0.40–0.52 V | $R_{DS(on)}$ 60 mΩ | $R_{ON}$ ≈ 40 mΩ, 2.5 A, 1.6–5.5 V | $R_{DS(on)}$ ≈ 84 mΩ, **2 A**, 2.8–5.5 V |
-| Jack, Typ 0.857 A: sụt áp / tổn hao / `+5V` | 0.40 V / 0.34 W / **4.69 V** | 0 / 0 / 5.09 V | 0.034 V / 0.029 W / 5.06 V | 0.072 V / 0.062 W / 5.02 V |
-| Jack, W2 2.318 A: sụt áp / tổn hao / `+5V` | 0.52 V / **1.21 W** / **4.57 V** | 0 / 0 / 5.09 V | 0.093 V / 0.215 W / **5.00 V** | 0.195 V / — / ❌ vượt 2 A |
+| Jack, Typ 0.661 A: sụt áp / tổn hao / `+5V` | 0.36 V / 0.24 W / **4.73 V** | 0 / 0 / 5.09 V | **0.026 V / 0.017 W / 5.06 V** | 0.056 V / 0.037 W / 5.03 V |
+| Jack, Worst 1.986 A: sụt áp / tổn hao / `+5V` | 0.50 V / **0.99 W** / **4.59 V** | 0 / 0 / 5.09 V | **0.080 V / 0.158 W / 5.01 V** | 0.167 V / — / ⚠️ 2 A sát 1.986 A |
 | USB 0.5 A: `+5V` (VBUS = 5.0 V → 4.775 V sau cáp + PTC) | 4.43 V (SS14, $V_F$ 0.35 V) | 4.75 V | 4.76 V | 4.73 V |
 | USB 0.5 A: `+5V` (VBUS = 4.75 V → 4.525 V) | **4.18 V** | 4.50 V | 4.51 V | 4.48 V |
 | Ưu tiên khi cắm cả hai | Nguồn điện áp cao hơn thắng | Jack thắng (cần thiết kế gate) | Nguồn điện áp cao hơn thắng `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: đọc mục chọn kênh của LM66200]` | Có chân chọn ưu tiên `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: bảng chế độ MODE/CTRL]` |
-| Biên dòng so với 2.318 A | cần SS34 (3 A, biên 29 %) | — | 2.5 A, biên **8 %** | ❌ 2 A < 2.318 A |
+| Biên dòng so với 1.986 A | cần SS34 (3 A, biên 51.1 %) | — | 2.5 A, biên **25.9 %** | ❌ 2 A ≈ 1.986 A (chỉ 0.7 %) |
 | Độ phức tạp | Thấp nhất (2 diode) | Trung bình (P-MOS + trở/Zener gate + EN) | Thấp (1 IC + cap) | Thấp (1 IC + R_ILIM + cap) |
 
 ### 2.3.3. Tác động thực tế lên Servo và NeoPixel
 
 | Điều kiện | `+5V` | % so với 5.0 V | Servo SG90 (4.8–6 V `[Giả định: DS]`, mô-men ∝ V `[Giả định: ƯL]`) | NeoPixel (VDD 3.5–5.3 V `[Giả định: DS]`) |
 |---|---|---|---|---|
-| Jack, W2, **Schottky OR** | 4.57 V | 91 % | Dưới 4.8 V; mô-men −9 % | Vẫn chạy; khi servo khởi động sụt thêm → LED **xanh dương/trắng** hụt trước, trắng ngả vàng |
-| Jack, W2, **LM66200** | 5.00 V | 100 % | Đúng định mức | Màu ổn định |
+| Jack, Worst, **Schottky OR** | 4.59 V | 91.8 % | Dưới 4.8 V; mô-men −8.2 % | Vẫn chạy; khi servo khởi động sụt thêm → LED **xanh dương/trắng** hụt trước, trắng ngả vàng |
+| Jack, Worst, **LM66200** | 5.01 V | 100.2 % | Đúng định mức | Màu ổn định |
 | USB (VBUS 4.75 V), **Schottky OR** | **4.18 V** | 83.5 % | Mô-men −16.5 %; **giật/reset** vì host chỉ 500 mA | Ngả vàng, hụt xanh dương rõ |
 | USB (VBUS 4.75 V), **LM66200** | 4.51 V | 90 % | −10 %; vẫn bị giới hạn 500 mA của host | Chấp nhận được |
 
-- **Xung khởi động servo** (đỉnh tới 650 mA/con `[Giả định: KB]`): với Schottky, $V_F$ ≈ 0.55 V → `+5V` ≈ 4.54 V → AMS1117-3.3 (cần ≥ 3.3 + 1.3 = 4.6 V ở dropout tối đa `[Giả định: DS]`) **mất ổn áp → 3V3 tụt → ESP32 brownout reset**.
-- **Mức logic NeoPixel:** $V_{IH} = 0.7 \times V_{DD}$ `[Giả định: DS]`. Với `+5V` = 5.0 V → 3.5 V > 3.3 V của ESP32 ⇒ **bắt buộc có level-shifter** (74AHCT125, $V_{IH}$ ≈ 2 V ở VCC 5 V `[Giả định: DS]`), bất kể chọn power-path nào. Thêm điện trở nối tiếp 330–470 Ω trên Data và tụ 470–1000 µF gần nguồn dải LED `[Giả định: ƯL — thông lệ NeoPixel]`.
+- **Xung khởi động servo** (đỉnh tới 650 mA/con `[Giả định: KB]`): với Schottky, $V_F$ ≈ 0.55 V → `+5V` ≈ 4.54 V. Với Buck AP63203 ($V_{IN\_MIN} = 3.8\text{ V}$), rail 3.3 V vẫn ổn định hoàn toàn, không lo brownout reset như khi dùng LDO đời cũ.
+- **Mạch điều khiển & Level Shifter cho NeoPixel:**
+  - Theo Bảng 6-3 Datasheet ESP32-S3, mức điện áp ngõ ra của GPIO là: $V_{OH} \ge 0.8 \times VDD = 0.8 \times 3.3\text{ V} = \mathbf{2.64\ V}$ (ở $I_{OH} = 40\text{ mA}$ typ, PAD_DRIVER = 3); $V_{OL} \le 0.1 \times VDD = \mathbf{0.33\ V}$ (ở $I_{OL} = 28\text{ mA}$ typ). Trong khi đó, NeoPixel WS2812B (cấp nguồn `+5V` = 5.0 V) yêu cầu điện áp vào mức cao $V_{IH} = 0.7 \times V_{DD} = 0.7 \times 5.0\text{ V} = \mathbf{3.5\ V} > 3.3\text{ V}$. Vì $V_{OH}$ tối đa của ESP32-S3 (ngay cả danh định 3.3 V vẫn < 3.5 V) ⇒ **bắt buộc phải có Level-Shifter**.
+  - LED dùng nguồn `+5V`, nhận tín hiệu từ **`GPIO45`** thông qua IC chuyển mức 1 kênh **`74AHCT1G125`** (cấp nguồn `+5V`, dịch mức `3.3 V → 5 V` vì $V_{IH} = 0.7 \times 5.0\text{ V} = 3.5\text{ V} > 3.3\text{ V}$, ngõ vào tương thích TTL $V_{IH\_min} = 2.0\text{ V}$). Kèm tụ lọc gốm `100 nF` đặt sát chân nguồn VCC của LED và trở nối tiếp `330 Ω` trên đường Data để triệt tiêu sóng phản xạ.
+- **Lưu ý Strapping Pin (`GPIO45`):**
+  - Chân `GPIO45` là chân strapping chọn điện áp `VDD_SPI` (cần mức LOW khi khởi động để cấp 3.3 V cho Flash nội/ngoài; nếu bị kéo HIGH sẽ chuyển sang 1.8 V làm Flash không chạy và treo chip).
+  - **Quy tắc bắt buộc:** **Tuyệt đối cấm gắn trở kéo lên (pull-up)** trên đường tín hiệu `GPIO45`. Ngõ vào của `74AHCT1G125` là ngõ vào High-Z, không kéo chân lên mức cao lúc reset nên an toàn.
+- **Giải thích loại bỏ phương án cấp nguồn `+3V3` cho NeoPixel:**
+  - WS2812B yêu cầu dải nguồn hoạt động `3.5–5.3 V` (cấp `3.3 V` gây sụt áp, hụt ánh sáng LED xanh dương do $V_F$ cao và rất dễ nhấp nháy khi ESP32 phát Wi-Fi làm dao động rail 3.3 V).
+  - Đồng thời, việc chuyển `60 mA` sang nhánh `+3V3` hoàn toàn không giúp bỏ được Buck 5 V (vẫn cần cấp cho 4 servo và header 5V); giữ NeoPixel ở rail 5V giúp tận dụng tối đa Buck 5V MP1584 và tránh tạo thêm tải đóng cắt lên Buck 3.3 V.
 
 ### 2.3.4. Khuyến nghị chốt
 
-**LM66200 làm ideal-diode OR-ing**, Buck đặt 5.09 V. Lý do cốt lõi: giữ `+5V` ≥ 5.0 V ở dòng worst (Schottky chỉ còn 4.57 V) và chặn ngược thật sự.
+**LM66200 làm ideal-diode OR-ing**, Buck đặt 5.09 V. Lý do cốt lõi: giữ `+5V` ≥ 5.0 V (đạt 5.01 V) ở dòng worst (Schottky chỉ còn 4.59 V) và chặn ngược thật sự.
 
 Rủi ro còn lại (phải kiểm tra datasheet):
-1. Biên dòng chỉ 8 % so với W2; chấp nhận được vì W2 là tổng của mọi tải *đồng thời cực đại*.
-2. Ưu tiên khi cắm cả hai: nếu datasheet xác nhận "điện áp cao hơn thắng", Buck 5.09 V chỉ hơn VBUS điển hình (5.0 V) 90 mV nhưng VBUS có thể tới 5.25 V → USB có thể thắng khi cắm cả hai. Khi đó chuyển sang TPS2113A (có ưu tiên) *và* hạ W2 xuống ≤ 1.54 A ($=2\,A/1.3$), hoặc dùng cặp P-MOS tự ngắt.
-3. **Phương án dự phòng cho bản thử đầu tiên:** 2 Schottky SS34 — đơn giản, an toàn, chấp nhận `+5V` ≈ 4.5 V; kèm LDO 3.3 V loại dropout thấp.
+1. Biên dòng đạt **25.9 %** so với tải Worst-case 1.986 A ($2.5\text{ A} / 1.986\text{ A} - 1 \approx 25.9\%$, tăng mạnh từ mức 8 % / 12.7 % trước đây); hoàn toàn đáp ứng tốt vì 1.986 A là tổng tải cực đại đồng thời của toàn hệ thống.
+2. Ưu tiên khi cắm cả hai: nếu datasheet xác nhận "điện áp cao hơn thắng", Buck 5.09 V chỉ hơn VBUS điển hình (5.0 V) 90 mV nhưng VBUS có thể tới 5.25 V → USB có thể thắng khi cắm cả hai. Khi đó chuyển sang TPS2113A (có ưu tiên) *và* hạ tải Worst-case xuống ≤ 1.54 A ($=2\,A/1.3$), hoặc dùng cặp P-MOS tự ngắt.
+3. **Phương án dự phòng cho bản thử đầu tiên:** 2 Schottky SS34 — đơn giản, an toàn, chấp nhận `+5V` ≈ 4.59 V.
 
 ### 2.3.5. Linh kiện bắt buộc cho USB-C
 
@@ -365,73 +389,65 @@ Rủi ro còn lại (phải kiểm tra datasheet):
 
 ---
 
-## 2.4. Khối Ổn áp 3.3V (3.3 V LDO)
+## 2.4. Khối Ổn áp 3.3V — Buck Đồng bộ AP63203
 
-### 2.4.1. Kiểm tra Dropout
+### 2.4.1. Vì sao chuyển đổi từ LDO sang Buck đồng bộ AP63203
 
-Điện áp thấp nhất của `+5V` (đã trừ power-path LM66200, mục 2.3):
+Trước đây, thiết kế dự kiến dùng LDO 3.3 V (AP2114H-3.3 hoặc AMS1117-3.3). Tuy nhiên, phân tích sâu cho thấy LDO gặp 3 giới hạn nghiêm trọng. Nhóm quyết định chuyển toàn bộ khối 3.3 V sang IC hạ áp xung đồng bộ **AP63203** (bản fixed `3.3 V`, dòng ra tối đa `2 A`, dải $V_{IN}$ `3.8–32 V`, tần số đóng cắt $f_{sw} = 1.1\text{ MHz}$ `[Giả định: DS]`, hiệu suất $\eta = 90\%$ `[Giả định: ƯL]`). 
 
-| Chế độ | `+5V` thấp nhất | Headroom $= V_{5V} - 3.3$ |
-|---|---|---|
-| Jack, W2 | 5.00 V | 1.70 V |
-| USB, VBUS 4.75 V, 0.5 A | 4.51 V | 1.21 V |
+Ba lý do kỹ thuật cốt lõi:
+1. **Triệt tiêu hoàn toàn quá nhiệt ($T_J$ mát mẻ):** 
+   - Trên LDO, ở tải đỉnh 853 mA (burst Wi-Fi), công suất tỏa nhiệt là $P_{loss} = (5.1 - 3.3)\text{ V} \times 0.853\text{ A} + 5.1\text{ V} \times 5\text{ mA} = \mathbf{1.56\text{ W}}$, đẩy $T_J$ lên $134\text{--}181^\circ\text{C}$ (vượt ngưỡng chịu đựng $125^\circ\text{C}$ của IC).
+   - Với Buck đồng bộ **AP63203**, công suất tỏa nhiệt ở cùng tải đỉnh 853 mA giảm xuống chỉ còn:
+     $$P_{loss} = P_{out} \cdot \frac{1 - \eta}{\eta} = 3.3\,\text{V} \times 0.853\,\text{A} \times \frac{1 - 0.90}{0.90} \approx \mathbf{0.31\ W}$$
+   - Ở chế độ tải kéo dài (473 mA), Buck chỉ tỏa **0.17 W** (so với 0.88 W của LDO); ở Typical (192 mA), Buck chỉ tỏa **0.07 W** (so với 0.37 W của LDO). Nhiệt độ mối nối $T_J$ của AP63203 chỉ tăng thêm $\approx 10\text{--}15^\circ\text{C}$ so với môi trường, loại bỏ hoàn toàn yêu cầu phủ mảng đồng tản nhiệt $\ge 600\text{ mm}^2$ dưới tab IC.
+2. **Tiết kiệm dòng cho rail `+5V` và nguồn USB:**
+   - LDO rút dòng từ `+5V` bằng đúng dòng ra ở 3.3 V ($I_{in} \approx I_{out}$), tiêu tốn tới 858 mA ở đỉnh và 197 mA ở Typical.
+   - Buck đồng bộ AP63203 chuyển đổi theo nguyên lý bảo toàn năng lượng với $\eta = 90\%$, dòng rút từ `+5V` chỉ còn:
+     $$I_{in} = \frac{3.3\,\text{V} \cdot I_{3V3}}{0.90 \times 5.0\,\text{V}} \approx 0.733 \times I_{3V3}$$
+     - Mức Typical ($I_{3V3} = 192\text{ mA}$): chỉ rút **141 mA** (tiết kiệm **56 mA**).
+     - Mức Worst-case ($I_{3V3} = 853\text{ mA}$): chỉ rút **626 mA** (tiết kiệm **232 mA**).
+   - Sự sụt giảm 232 mA này giảm trực tiếp áp lực gánh tải lên Buck 5 V (MP1584), giúp MP1584 đạt biên an toàn lên tới **51.1 %**; đồng thời giúp chế độ USB dư thêm 56 mA headroom.
+3. **An toàn điện áp đầu vào ở góc USB ($V_{IN\_MIN} = 3.8\text{ V}$):**
+   - Khi cắm USB, điện áp `+5V` sau power-path có thể xuống tới 4.51 V (hoặc 4.18 V nếu dùng Schottky). LDO cần dropout 1.1–1.3 V nên headroom 1.21 V rất sát ngưỡng mất ổn áp.
+   - AP63203 có ngưỡng điện áp vào tối thiểu $V_{IN\_MIN} = \mathbf{3.8\text{ V}}$, thấp hơn rất nhiều so với mức 4.51 V của USB (headroom dư $> 0.7\text{ V}$), đảm bảo ngõ ra 3.3 V luôn ổn định tuyệt đối trong mọi điều kiện nguồn USB.
 
-Dropout `[Giả định: DS]`: AMS1117-3.3 ≈ 1.1 V typ / 1.3 V max ở 0.8–1 A; AP2114H-3.3 cùng lớp ≈ 1.1–1.3 V.
+### 2.4.2. Bảng so sánh thông số kỹ thuật: LDO (AP2114H-3.3) vs Buck Đồng bộ (AP63203)
 
-- Chế độ jack: dư 0.4–0.6 V ✅.
-- Chế độ USB: ở 0.5 A dropout nhỏ hơn mức 1 A, headroom 1.21 V ✅ nhưng sát. Nếu dùng Schottky OR-ing (`+5V` = 4.18 V, headroom 0.88 V) → **không đạt**.
-
-### 2.4.2. Nhiệt độ mối nối $T_J$
-
-$$P_{loss} = (V_{IN}-3.3)\,I_{out} + V_{IN}\,I_{GND}, \qquad T_J = T_A + P_{loss}\,\theta_{JA}$$
-
-Điều kiện: $V_{IN}$ = **5.1 V** (Buck 5.09 V, không sụt — trường hợp xấu nhất về nhiệt), $I_{GND}$ = 5 mA `[Giả định: DS]`, $T_A$ = **40 °C** `[Giả định: KB — bên trong vỏ hộp kín; nhóm thay bằng nhiệt độ thực]`, SOT-223 $\theta_{JA}$: **90 °C/W** (đồng tối thiểu) và **60 °C/W** (mảng đồng ≥ ≈ 600 mm² dưới tab) `[Giả định: ƯL]`.
-
-| Tình huống | $I_{out}$ | $P_{loss}$ | $T_J$ @ 90 °C/W | $T_J$ @ 60 °C/W |
-|---|---|---|---|---|
-| Typical | 192 mA | 0.37 W | 73 °C ✅ | 62 °C ✅ |
-| Worst kéo dài | 473 mA | 0.88 W | **119 °C** ⚠️ | 93 °C ✅ |
-| Mốc 800 mA của đề | 800 mA | 1.47 W | 172 °C ❌ | 128 °C ❌ |
-| Worst đỉnh | 853 mA | 1.56 W | **181 °C** ❌ | **134 °C** ❌ |
-
-Giới hạn $T_{J,max}$ = 125 °C, ngắt nhiệt ≈ 150–165 °C `[Giả định: DS]`. Dòng liên tục tối đa:
-
-$$I_{max} = \frac{T_{J,max}-T_A}{\theta_{JA}\,(V_{IN}-3.3)} = \frac{85}{60 \times 1.8} \approx 0.79\ \text{A (60 °C/W)}, \quad \frac{85}{90 \times 1.8} \approx 0.52\ \text{A (90 °C/W)}$$
-
-**Kết luận nhiệt:** LDO chịu được tải kéo dài 473 mA **chỉ khi** có mảng đồng tản nhiệt tốt. Tải đỉnh 853 mA chỉ chấp nhận được nếu kéo dài tính bằng mili-giây (burst Wi-Fi), không phải liên tục.
-
-**Giải pháp:**
-1. Mảng đồng dưới tab SOT-223 ≥ ≈ 600 mm², nhiều via nhiệt xuống mặt đồng bên kia.
-2. Giảm $V_{IN}$ của LDO (mỗi 0.1 V ít hơn giảm ≈ 5.5 % công suất).
-3. **Nếu nhóm xác nhận tải 3V3 kéo dài > ≈ 0.6 A → đổi sang Buck 3.3 V** (ví dụ AP63203 fixed 3.3 V, 2 A, cùng họ AP63205 `[Giả định: DS]`): tổn hao ≈ $2.8\,W \times (1-0.9)/0.9$ ≈ **0.31 W** so với 1.56 W của LDO. Đánh đổi: thêm cuộn cảm, nhiễu đóng cắt gần RF (cần LC lọc và đặt xa ăng-ten).
-
-### 2.4.3. Ổn định vòng hồi tiếp và ESR tụ đầu ra
-
-LDO đời cũ (AMS1117, LM1117) bù pha bằng "zero" tạo bởi ESR của tụ đầu ra: $f_z = \dfrac{1}{2\pi\,ESR\,C}$.
-
-| Tụ đầu ra 22 µF | ESR | $f_z$ | Kết quả |
+| Tiêu chí | **AP2114H-3.3** (LDO) | **AP63203** (Buck đồng bộ fixed 3.3 V) | Nhận xét ưu thế của AP63203 |
 |---|---|---|---|
-| Tantalum | 0.3 Ω | ≈ **24 kHz** | Nằm trong cửa sổ ESR của AMS1117 (≈ 0.3–22 Ω `[Giả định: DS]`) → ổn định |
-| MLCC | 0.01 Ω | ≈ **723 kHz** | Zero quá cao, mất bù pha → **dễ tự dao động** |
+| Kiểu ổn áp | Tuyến tính (LDO) | Đóng cắt đồng bộ (Sync Buck) | Tích hợp sẵn cặp FET High/Low-side, không cần diode Schottky ngoài |
+| Dải $V_{IN}$ | 4.4–5.5 V (bị giới hạn bởi dropout) | **3.8–32 V** | Dải áp rộng, không ngại sụt áp nguồn USB |
+| Dòng tải tối đa | 1.0 A `[Giả định: DS]` | **2.0 A** `[Giả định: DS]` | Dư gấp 2.3× so với đỉnh 853 mA (biên an toàn **134 %**) |
+| Tần số đóng cắt | — | **1.1 MHz** `[Giả định: DS]` | Tần số cao, cho phép dùng cuộn cảm nhỏ |
+| Hiệu suất $\eta$ ở $V_{IN}=5\text{ V}$ | 66 % ($=3.3/5.0$) | **90 %** `[Giả định: ƯL]` | Vượt trội 24 % |
+| **Tỏa nhiệt @ Typ 192 mA** | 0.37 W ($T_J \approx 62\text{--}73^\circ\text{C}$) | **0.07 W** ($T_J \approx T_A + 3^\circ\text{C}$) | Mát hoàn toàn |
+| **Tỏa nhiệt @ Kéo dài 473 mA** | 0.88 W ($T_J \approx 93\text{--}119^\circ\text{C}$ ⚠️) | **0.17 W** ($T_J \approx T_A + 8^\circ\text{C}$) | Rất an toàn |
+| **Tỏa nhiệt @ Đỉnh 853 mA** | **1.56 W** ($T_J \approx 134\text{--}181^\circ\text{C}$ ❌) | **0.31 W** ($T_J \approx T_A + 15^\circ\text{C}$ ✅) | **Giảm 80 % nhiệt lượng**, triệt tiêu nguy cơ quá nhiệt |
+| Dòng rút từ `+5V` @ Worst | 858 mA | **626 mA** | Tiết kiệm **232 mA** cho rail 5 V |
+| Yêu cầu tản nhiệt PCB | Bắt buộc mảng đồng $\ge 600\text{ mm}^2$ | Chỉ cần pad đồng tiêu chuẩn IC | Giải phóng diện tích layout |
 
-| | **AMS1117-3.3** | **AP2114H-3.3** | **SPX3819** | **RT9080** |
-|---|---|---|---|---|
-| Dòng tối đa `[Giả định: DS]` | 1 A | 1 A | **0.5 A** | **0.6 A** |
-| Dropout `[Giả định: DS]` | ≈ 1.1–1.3 V | ≈ 1.1–1.3 V | ≈ 0.34 V @ 0.5 A | ≈ 0.2–0.3 V |
-| Tụ đầu ra | Cần ESR trong cửa sổ | Ổn định với MLCC | Ổn định với MLCC | Ổn định với MLCC |
-| $I_{GND}$ | ≈ 5 mA | thấp | thấp | thấp |
-| Đạt ≥ 800 mA (đề) / 853 mA (worst) | ✅ | ✅ | ❌ | ❌ |
-| Phù hợp board này? | Chỉ nếu dùng tụ tantalum; MLCC thì sai | ✅ **chọn** | ❌ thiếu dòng | ❌ thiếu dòng |
+### 2.4.3. Đánh đổi kỹ thuật & Giải pháp thiết kế chống nhiễu RF cho ESP32-S3
 
-> ⚠️ SPX3819 và RT9080 (có trong danh sách gợi ý của đề) **không đạt mốc 800 mA**, chỉ dùng nếu nhóm chia tải 3V3 sang nhiều LDO.
+Việc chuyển từ LDO sang Buck mang lại ưu thế tuyệt đối về nhiệt và dòng, nhưng đánh đổi lại là sự xuất hiện của gợn sóng đóng cắt (switching ripple) và trường điện từ phát xạ từ cuộn cảm ở tần số $f_{sw} = 1.1\text{ MHz}$. 
 
-**Chốt:** LDO ≥ 1 A, ổn định với MLCC (AP2114H-3.3 hoặc tương đương như AP7361C-33E `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: đọc datasheet — dòng, dropout ở 1 A, dải ESR/tụ cho phép]`). Tụ đầu ra gốm **22 µF** (lưu ý X5R 6.3 V mất ≈ 30–40 % dung lượng ở 3.3 V `[Giả định: ƯL]`).
+Để đảm bảo hiệu năng RF của module **ESP32-S3-WROOM-1** (độ nhạy RX Wi-Fi và công suất phát TX) không bị suy giảm, nhóm áp dụng các giải pháp phần cứng bắt buộc:
+1. **Linh kiện thụ động ngoại vi:**
+   - Cuộn cảm và tụ vào: chọn theo khuyến nghị của nhà sản xuất Diodes Inc. `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: mở datasheet AP63203 để lấy đúng trị số cuộn cảm (thường 2.2–3.3 µH) và tụ vào/ra chuẩn]`.
+   - Cuộn cảm phải có dòng bão hòa $I_{sat} \ge 1.3 \times 2\text{ A} \approx 2.6\text{ A}$ và điện trở một chiều DCR thấp.
+2. **Cấu hình tụ lọc ngõ ra triệt tiêu gợn sóng:**
+   - Ngay tại ngõ ra của AP63203: đặt song song **$2\times 22\,\mu\text{F}$ tụ gốm MLCC** (loại X5R/X7R, điện áp định mức $\ge 10\text{ V}$) để giảm tổng trở kháng cao tần và gìm gợn sóng đóng cắt xuống dưới $20\text{ mV}_{p-p}$.
+   - Tại chân cấp nguồn của MCU: bố trí cặp tụ **$10\,\mu\text{F} + 100\text{ nF}$** đặt sát ngay chân `3V3` của module ESP32-S3 để lọc triệt để xung nhiễu phát thanh tần cao.
+3. **Quy tắc bố trí Layout chống bức xạ nhiễu:**
+   - **Vòng nóng (Hot Loop):** Thu hẹp tối đa diện tích vòng lặp dòng điện xung tần số cao bao gồm: chân VIN của AP63203 → tụ hồi tiếp Cin → chân GND của IC.
+   - **Nút SW:** Đường nối chân SW sang cuộn cảm phải cực ngắn, diện tích đồng vừa đủ tải dòng, không phủ đồng rộng để tránh biến thành ăng-ten phát xạ E-field.
+   - **Khoảng cách ly RF:** Cụm Buck 3.3 V (IC, cuộn cảm, tụ) phải bố trí cách xa khu vực ăng-ten PCB trên đầu module ESP32-S3, đặt ở phía đối diện của board mạch; mặt phẳng GND liền khối (solid ground plane) nằm ngay dưới cụm Buck ở lớp Layer 2 để chắn từ trường phát xạ.
 
-Kiểm tra sụt áp tải bước nhảy 400 mA, đáp ứng LDO ≈ 10 µs `[Giả định: ƯL]`:
+Kiểm tra sụt áp tải bước nhảy 400 mA (thời gian đáp ứng Buck $\approx 10\,\mu\text{s}$, dung lượng lọc ngõ ra $C_{out} = 2 \times 22\,\mu\text{F} = 44\,\mu\text{F}$):
 
-$$\Delta V \approx \frac{\Delta I \cdot \Delta t}{C} = \frac{0.4 \times 10\,\mu s}{22\,\mu F} \approx 0.18\ \text{V} \Rightarrow 3.12\ \text{V}$$
+$$\Delta V \approx \frac{\Delta I \cdot \Delta t}{C_{out}} = \frac{0.4 \times 10\,\mu s}{44\,\mu F} \approx 0.09\ \text{V} \Rightarrow V_{min} \approx 3.21\ \text{V}$$
 
-→ trên ngưỡng nguồn tối thiểu 3.0 V của ESP32-S3 `[Giả định: DS]`.
+→ Trên ngưỡng nguồn tối thiểu 3.0 V của ESP32-S3 (xác nhận theo Datasheet ESP32-S3 Bảng 6-2: dải nguồn khuyến nghị $VDD33$ từ **3.0 V đến 3.6 V**, danh định 3.3 V; Bảng 6-1 giới hạn tuyệt đối: **-0.3 V đến 3.6 V**).
 
 ---
 
@@ -441,12 +457,12 @@ $$\Delta V \approx \frac{\Delta I \cdot \Delta t}{C} = \frac{0.4 \times 10\,\mu 
 
 | Khối | Phương án đề xuất | Linh kiện tiêu biểu | Lý do cốt lõi |
 |---|---|---|---|
-| Bảo vệ đầu vào | PTC → TVS → P-MOS ideal diode (Zener clamp Gate) | PTC 3 A hold; **SMBJ16A**; P-MOS −30 V (AO3401A); Zener 10 V; R_G 100 kΩ | Tổn hao 0.29 W thay vì 1.10 W; $V_{GS}$ không vượt 12 V; $V_C$ = 26 V < 28 V của Buck |
-| Hạ áp 5 V | Buck adjustable ≥ 3 A, $V_{IN\_MIN}$ ≤ 4.5 V | **MP1584**, L = 4.7 µH ($I_{sat}$ ≥ 4.5 A), FB 53.6 kΩ / 10 kΩ → 5.09 V | Duy nhất đạt cả 3 A và $V_{IN\_MIN}$ thấp; LDO 5 V tỏa 16.2 W |
-| Chọn nguồn | Ideal-diode OR-ing | **LM66200** (dự phòng: 2× SS34) | `+5V` 5.00 V ở 2.3 A (Schottky: 4.57 V); chặn dòng ngược vào USB |
+| Bảo vệ đầu vào | PTC → TVS → P-MOS ideal diode (Zener clamp Gate) | PTC 3 A hold; **SMBJ16A**; P-MOS −30 V (AO3401A); Zener 10 V; R_G 100 kΩ | Tổn hao 0.21 W thay vì 0.94 W; $V_{GS}$ không vượt 12 V; $V_C$ = 26 V < 28 V của Buck |
+| Hạ áp 5 V | Buck adjustable ≥ 3 A, $V_{IN\_MIN}$ ≤ 4.5 V | **MP1584**, L = 4.7 µH ($I_{sat}$ ≥ 4.5 A), FB 53.6 kΩ / 10 kΩ → 5.09 V | Duy nhất đạt cả 3 A (biên an toàn **51.1 %** so với worst 1.986 A) và $V_{IN\_MIN}$ thấp; LDO 5 V tỏa 13.9 W |
+| Chọn nguồn | Ideal-diode OR-ing | **LM66200** (dự phòng: 2× SS34) | `+5V` 5.01 V ở 1.986 A (Schottky: 4.59 V); biên dòng **25.9 %**; chặn dòng ngược vào USB |
 | USB-C | Rd + ESD + PTC | 2× 5.1 kΩ; **USBLC6-2SC6**; PTC ≈ 0.75 A | C-to-C cần Rd; bảo vệ D+/D− |
-| Ổn áp 3.3 V | LDO ≥ 1 A, ổn định MLCC + đồng tản nhiệt (hoặc Buck 3.3 V nếu tải kéo dài > 0.6 A) | **AP2114H-3.3** (dự phòng: AP63203) | 853 mA worst > 800 mA; $T_J$ 93 °C (kéo dài, 60 °C/W) |
-| NeoPixel | Level-shifter | 74AHCT125 | $V_{IH}$ = 3.5 V > 3.3 V của ESP32 |
+| Ổn áp 3.3 V | Buck fixed 3.3 V đồng bộ | **AP63203** (2 A, fixed 3.3 V, $f_{sw} = 1.1\text{ MHz}$) | Tỏa nhiệt đỉnh chỉ **0.31 W** (so với 1.56 W của LDO), giảm dòng vào 5 V xuống **626 mA** (tiết kiệm 232 mA), $V_{IN\_MIN} = 3.8\text{ V}$ an toàn cho USB |
+| NeoPixel | 1× NeoPixel WS2812B onboard (GPIO45) | **74AHCT1G125** + R 330 Ω + C 100 nF | Cấp nguồn `+5V`, $V_{IH} = 3.5\text{ V} > 3.3\text{ V}$ của ESP32; GPIO45 không gắn pull-up (strapping pin VDD_SPI) |
 
 ## 3.2. Danh sách `[Chưa có đủ thông tin]` nhóm cần điền
 
@@ -454,22 +470,28 @@ $$\Delta V \approx \frac{\Delta I \cdot \Delta t}{C} = \frac{0.4 \times 10\,\mu 
 |---|---|---|
 | 1 | Loại adapter và điện áp hở mạch | Đo bằng đồng hồ vạn năng khi không tải; quyết định TVS (SMBJ15A/16A/18A) |
 | 2 | Loại servo thật và số servo chạy cùng lúc | Datasheet servo; đo dòng bằng power meter |
-| 3 | Số NeoPixel và mức giới hạn độ sáng | Quyết định W1 hay W2 (3.43 A hay 3.01 A) |
-| 4 | Dòng thật từng module Grove | Datasheet module, hoặc đo khi chạy |
-| 5 | Dòng cho phép trên chân `+5V` của header | Nhóm tự đặt giới hạn, ghi vào README |
-| 6 | Nhiệt độ môi trường $T_A$ và diện tích đồng LDO | Quyết định hộp kín/hở; kết quả sau layout |
-| 7 | GPIO cho `VBUS_SENSE`, `PWR_SRC`/PG | Phối hợp với nhóm MCU khi chốt pin-map |
-| 8 | Các số `[Giả định: DS]` của MP1584, LM66200, AP2114H, SMBJ, AO3401A | Mở datasheet, đối chiếu từng giá trị, đặc biệt: duty tối đa/dropout MP1584; kiểu chọn kênh LM66200; dropout AP2114H ở 1 A; $V_{GS(max)}$ P-MOS |
+| 3 | Dòng thật từng module Grove | Datasheet module, hoặc đo khi chạy |
+| 4 | Dòng cho phép trên chân `+5V` của header | Nhóm tự đặt giới hạn, ghi vào README |
+| 5 | Nhiệt độ môi trường $T_A$ và nhiệt độ vỏ hộp | Quyết định hộp kín/hở; đo nhiệt độ thực tế khi chạy tải |
+| 6 | GPIO cho `VBUS_SENSE`, `PWR_SRC`/PG | Phối hợp với nhóm MCU khi chốt pin-map |
+| 7 | Các số `[Giả định: DS]` của MP1584, LM66200, AP63203, SMBJ, AO3401A | Mở datasheet, đối chiếu từng giá trị, đặc biệt: trị số cuộn cảm/tụ khuyến nghị của AP63203; duty tối đa/dropout MP1584; kiểu chọn kênh LM66200; $V_{GS(max)}$ P-MOS |
 
 ## 3.3. Checklist quan trọng trước khi vẽ Schematic và layout
 
-1. **Duty/dropout ở 6 V:** xác nhận Buck vẫn ra ≥ 5.0 V khi $V_{IN}$ = 5.78 V, tải W2 (mục 2.2.2). Nếu không đạt, ghi rõ trong tài liệu: "jack ≥ 7.5 V để chạy tải nặng".
+1. **Duty/dropout ở 6 V:** xác nhận Buck vẫn ra ≥ 5.0 V khi $V_{IN}$ = 5.81 V, tải Worst-case (mục 2.2.2). Nếu không đạt, ghi rõ trong tài liệu: "jack ≥ 7.5 V để chạy tải nặng".
 2. **TVS ↔ Buck ↔ P-MOS:** kiểm $V_{RWM}$ ≥ điện áp hở mạch adapter; $V_C$ < $V_{IN\_MAX}$ của Buck *và* < $V_{DS}$ của P-MOS; tụ vào Buck ≥ 35 V.
 3. **P-MOS ideal diode:** Drain = `VIN_FUSED`, Source = `VIN_PROT`; có Zener 10 V giữa Source–Gate; thử cắm ngược cực trên mô phỏng/bảng mạch thử.
-4. **Layout Buck:** vòng nóng (Cin → IC → diode/cuộn) nhỏ nhất; Cin sát chân VIN–GND; đường FB đi xa nút `SW_BUCK` và lấy ở tụ ra; mặt phẳng GND liền dưới Buck; cuộn cảm $I_{sat}$ ≥ 4.5 A.
-5. **LDO 3.3 V:** mảng đồng ≥ ≈ 600 mm² dưới tab, có via nhiệt; tụ đầu ra gốm 22 µF đặt sát chân OUT; đối chiếu dải ESR/tụ trong datasheet LDO đã chọn.
-6. **Tụ lọc ESP32-S3:** 10–22 µF + 100 nF đặt sát chân 3V3 của module; EN có RC theo hướng dẫn thiết kế phần cứng của Espressif `[Chưa có đủ thông tin - Cần nhóm tự xác nhận: giá trị RC trong "ESP32-S3 Hardware Design Guidelines"]`.
-7. **USB-C:** 5.1 kΩ **riêng** cho CC1 và CC2; USBLC6-2SC6 đặt sát đầu nối; D+/D− đi cặp vi sai ngắn, không qua via thừa; PTC trên VBUS; điểm test `+5V`, `+3V3`, `GND`, `EN`.
+4. **Layout Buck 5 V (MP1584):** vòng nóng (Cin → IC → diode/cuộn) nhỏ nhất; Cin sát chân VIN–GND; đường FB đi xa nút `SW_BUCK` và lấy ở tụ ra; mặt phẳng GND liền dưới Buck; cuộn cảm $I_{sat}$ ≥ 4.5 A.
+5. **Buck 3.3 V (AP63203) & Chống nhiễu RF:**
+   - Bố trí $2\times 22\,\mu\text{F}$ tụ gốm MLCC ở ngõ ra Buck AP63203 để dập gợn sóng switching;
+   - Bố trí cặp tụ $10\,\mu\text{F} + 100\text{ nF}$ đặt sát chân VDD33 của module ESP32-S3;
+   - Vòng lặp nóng (Cin → chân VIN/GND của AP63203) nhỏ nhất; đặt toàn bộ cụm Buck 3.3 V cách xa khu vực ăng-ten PCB của ESP32-S3 để chống suy giảm độ nhạy Wi-Fi/Bluetooth.
+6. **NeoPixel và Strapping Pin (GPIO45):** kiểm tra tuyệt đối **không gắn điện trở kéo lên (pull-up)** trên đường tín hiệu `GPIO45` trước ngõ vào IC `74AHCT1G125` (chân strapping chọn điện áp `VDD_SPI`, phải giữ LOW khi chip khởi động/reset để Flash chạy ở 3.3 V). Đảm bảo bố trí tụ lọc gốm 100 nF sát chân VCC của WS2812B và điện trở nối tiếp 330 Ω trên đường Data.
+7. **Tụ lọc và chân EN ESP32-S3:** 
+   - Tụ lọc: 10–22 µF + 100 nF đặt sát chân 3V3 của module; mạch reset EN có RC theo khuyến nghị phần cứng của Espressif.
+   - Ngưỡng điện áp chân EN (Mục 5 Datasheet): $V_{IH\_nRST} = 0.75 \times VDD$ (Min = 2.475 V tại 3.3 V) đến $VDD + 0.3\text{ V}$ (Max = 3.6 V); $V_{IL\_nRST} = -0.3\text{ V}$ (Min) đến $0.25 \times VDD$ (Max = 0.825 V tại 3.3 V).
+   - Nguồn cấp VDD33 (Bảng 6-1 & 6-2): Định mức 3.0 V – 3.6 V (Typ 3.3 V); Giới hạn tuyệt đối -0.3 V đến 3.6 V; Nguồn ngoài phải đảm bảo $I_{VDD} \ge 0.5\text{ A}$.
+8. **USB-C:** 5.1 kΩ **riêng** cho CC1 và CC2; USBLC6-2SC6 đặt sát đầu nối; D+/D− đi cặp vi sai ngắn, không qua via thừa; PTC trên VBUS; điểm test `+5V`, `+3V3`, `GND`, `EN`.
 
 ---
 
