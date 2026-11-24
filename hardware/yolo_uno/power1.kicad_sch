@@ -3066,7 +3066,7 @@
 				)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "0.1uf"
 			(at 186.69 19.05 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3118,6 +3118,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "C8")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "C8")
 					(unit 1)
 				)
@@ -3200,6 +3206,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "#PWR041")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3225,7 +3237,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "2.2nf"
 			(at 191.77 44.4499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3282,6 +3294,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "C12")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3307,7 +3325,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "22uf"
 			(at 213.36 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3360,6 +3378,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "C9")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "C9")
 					(unit 1)
 				)
@@ -3446,6 +3470,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "D2")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3471,7 +3501,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_US"
+		(property "Value" "100uf"
 			(at 121.92 37.0839 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3528,6 +3558,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "C6")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3553,7 +3589,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "10k"
 			(at 207.01 49.5299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3606,6 +3642,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "R8")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "R8")
 					(unit 1)
 				)
@@ -3692,6 +3734,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "R6")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3770,6 +3818,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "R9")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "R9")
 					(unit 1)
 				)
@@ -3856,6 +3910,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "D3")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -3881,7 +3941,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "22uf"
 			(at 140.97 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3934,6 +3994,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "C7")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "C7")
 					(unit 1)
 				)
@@ -4021,6 +4087,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "J22")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4095,6 +4167,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "#PWR040")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "#PWR040")
 					(unit 1)
 				)
@@ -4180,6 +4258,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "F1")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4205,7 +4289,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "22uf"
 			(at 130.81 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4258,6 +4342,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "C13")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "C13")
 					(unit 1)
 				)
@@ -4438,6 +4528,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "U2")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4463,7 +4559,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "15k"
 			(at 190.5 52.0699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4520,6 +4616,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "R10")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4544,7 +4646,7 @@
 				)
 			)
 		)
-		(property "Value" "L"
+		(property "Value" "4.7uh"
 			(at 198.12 29.21 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4596,6 +4698,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "L1")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "L1")
 					(unit 1)
 				)
@@ -4678,6 +4786,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "#PWR042")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4756,6 +4870,12 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
+					(reference "D4")
+					(unit 1)
+				)
+			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "D4")
 					(unit 1)
 				)
@@ -4846,6 +4966,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "Q1")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4871,7 +4997,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "R"
+		(property "Value" "53.6k"
 			(at 207.01 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4928,6 +5054,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "R7")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -4953,7 +5085,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C_US"
+		(property "Value" "100uf"
 			(at 229.87 37.0839 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5010,6 +5142,12 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "C11")
+					(unit 1)
+				)
+			)
 		)
 	)
 	(symbol
@@ -5035,7 +5173,7 @@
 				(justify left)
 			)
 		)
-		(property "Value" "C"
+		(property "Value" "22uf"
 			(at 220.98 36.8299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5092,6 +5230,18 @@
 					(unit 1)
 				)
 			)
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "C10")
+					(unit 1)
+				)
+			)
 		)
 	)
+	(sheet_instances
+		(path "/"
+			(page "1")
+		)
+	)
+	(embedded_fonts no)
 )
