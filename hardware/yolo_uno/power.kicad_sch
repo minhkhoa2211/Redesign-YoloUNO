@@ -1926,6 +1926,14 @@
 		(color 0 0 0 0)
 		(uuid "f4bcee79-2cd1-4bd9-9ef4-f6f796ba5a73")
 	)
+	(no_connect
+		(at 60.96 92.71)
+		(uuid "91a79586-16e0-4d45-abf9-4b1c034cbc85")
+	)
+	(no_connect
+		(at 60.96 95.25)
+		(uuid "ee7addb5-cfc8-48b9-8aa7-7abd3bd30fd9")
+	)
 	(wire
 		(pts
 			(xy 38.1 120.65) (xy 38.1 124.46)
@@ -2603,7 +2611,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "30a308cf-1528-41d1-be28-fb10e632f0dc")
-		(property "Reference" "#PWR01"
+		(property "Reference" "#PWR07"
 			(at 228.6 97.79 0)
 			(hide yes)
 			(show_name no)
@@ -2663,7 +2671,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR01")
+					(reference "#PWR07")
 					(unit 1)
 				)
 			)
@@ -2681,7 +2689,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "31167604-bfd7-47c8-82e7-751e9ab8e9a7")
-		(property "Reference" "#PWR07"
+		(property "Reference" "#PWR06"
 			(at 87.63 101.6 0)
 			(hide yes)
 			(show_name no)
@@ -2741,7 +2749,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR07")
+					(reference "#PWR06")
 					(unit 1)
 				)
 			)
@@ -2920,7 +2928,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "5a70ced5-f48d-464d-94d9-0af9c7f1b31e")
-		(property "Reference" "#PWR04"
+		(property "Reference" "#PWR03"
 			(at 69.85 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -2980,7 +2988,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR04")
+					(reference "#PWR03")
 					(unit 1)
 				)
 			)
@@ -3080,7 +3088,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "60c13d88-8372-4c5e-93a6-a622e5d355a9")
-		(property "Reference" "#FLG02"
+		(property "Reference" "#FLG01"
 			(at 77.47 62.865 0)
 			(hide yes)
 			(show_name no)
@@ -3140,7 +3148,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#FLG02")
+					(reference "#FLG01")
 					(unit 1)
 				)
 			)
@@ -3158,7 +3166,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "75b1d6de-8f66-4b64-a4c0-2971d467b187")
-		(property "Reference" "#PWR06"
+		(property "Reference" "#PWR05"
 			(at 82.55 55.88 0)
 			(hide yes)
 			(show_name no)
@@ -3218,7 +3226,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR06")
+					(reference "#PWR05")
 					(unit 1)
 				)
 			)
@@ -3318,7 +3326,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "9f855bde-5e02-4f67-a064-6c3d94f6fb6f")
-		(property "Reference" "#PWR03"
+		(property "Reference" "#PWR02"
 			(at 45.72 114.3 0)
 			(hide yes)
 			(show_name no)
@@ -3378,7 +3386,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR03")
+					(reference "#PWR02")
 					(unit 1)
 				)
 			)
@@ -3396,7 +3404,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a10eca7a-6c3d-48bf-945b-b1c2b3b1c787")
-		(property "Reference" "#FLG01"
+		(property "Reference" "#FLG02"
 			(at 228.6 76.835 0)
 			(hide yes)
 			(show_name no)
@@ -3456,7 +3464,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#FLG01")
+					(reference "#FLG02")
 					(unit 1)
 				)
 			)
@@ -3473,7 +3481,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "b6c3f153-ba99-430c-8e16-710ab6d5a11b")
-		(property "Reference" "#PWR05"
+		(property "Reference" "#PWR04"
 			(at 77.47 81.28 0)
 			(hide yes)
 			(show_name no)
@@ -3533,7 +3541,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR05")
+					(reference "#PWR04")
 					(unit 1)
 				)
 			)
@@ -3551,7 +3559,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "c71daa77-3d59-4193-a355-074588a0e647")
-		(property "Reference" "#PWR02"
+		(property "Reference" "#PWR01"
 			(at 38.1 130.81 0)
 			(hide yes)
 			(show_name no)
@@ -3611,7 +3619,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR02")
+					(reference "#PWR01")
 					(unit 1)
 				)
 			)
