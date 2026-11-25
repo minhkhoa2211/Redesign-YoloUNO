@@ -48,3 +48,6 @@ desktop.ini
 *.lck
 *.kicad_prl
 fp-info-cache
+
+#== img ===
+img/
