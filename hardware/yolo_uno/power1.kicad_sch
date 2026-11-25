@@ -3056,7 +3056,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0181b349-416f-485f-b659-c0bbe09f4bae")
-		(property "Reference" "C13"
+		(property "Reference" "C15"
 			(at 186.69 16.51 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3076,7 +3076,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 190.5 23.1648 0)
 			(hide yes)
 			(show_name no)
@@ -3118,11 +3118,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C13")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C8")
+					(reference "C15")
 					(unit 1)
 				)
 			)
@@ -3146,7 +3142,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "08805bab-7072-4e65-b474-853a560f8fc2")
-		(property "Reference" "#PWR041"
+		(property "Reference" "#PWR057"
 			(at 110.49 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -3206,11 +3202,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "#PWR041")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR041")
+					(reference "#PWR057")
 					(unit 1)
 				)
 			)
@@ -3234,7 +3226,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "26cbd860-0062-4604-aa37-dc70833aa1d2")
-		(property "Reference" "C14"
+		(property "Reference" "C16"
 			(at 191.77 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3256,7 +3248,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0603_1608Metric"
 			(at 188.9252 46.99 0)
 			(hide yes)
 			(show_name no)
@@ -3298,11 +3290,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C14")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C12")
+					(reference "C16")
 					(unit 1)
 				)
 			)
@@ -3326,7 +3314,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2df43bc5-8d6b-4d54-8b5a-9165fab9faf9")
-		(property "Reference" "C15"
+		(property "Reference" "C17"
 			(at 213.36 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3348,7 +3336,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 210.5152 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -3390,11 +3378,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C15")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C9")
+					(reference "C17")
 					(unit 1)
 				)
 			)
@@ -3418,7 +3402,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "3e87538e-106c-4a1b-8e8f-7f1ece07f099")
-		(property "Reference" "D2"
+		(property "Reference" "D3"
 			(at 57.15 34.2899 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3440,7 +3424,7 @@
 				(justify right)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Diode_SMD:D_SMB"
 			(at 54.61 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -3482,11 +3466,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "D2")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "D2")
+					(reference "D3")
 					(unit 1)
 				)
 			)
@@ -3510,7 +3490,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4bd3765d-c2e8-43e4-bce1-f60ad585371d")
-		(property "Reference" "C10"
+		(property "Reference" "C12"
 			(at 121.92 34.5439 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3532,7 +3512,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 118.11 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -3574,11 +3554,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C10")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C6")
+					(reference "C12")
 					(unit 1)
 				)
 			)
@@ -3602,7 +3578,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "50ca9de2-83f4-40cc-a4ae-8de45f31d91e")
-		(property "Reference" "R13"
+		(property "Reference" "R15"
 			(at 207.01 46.9899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3624,7 +3600,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 202.692 48.26 90)
 			(hide yes)
 			(show_name no)
@@ -3666,11 +3642,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "R13")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "R8")
+					(reference "R15")
 					(unit 1)
 				)
 			)
@@ -3694,7 +3666,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "57b1c72e-1be8-4eb8-b795-02a87a0859bd")
-		(property "Reference" "R9"
+		(property "Reference" "R11"
 			(at 80.01 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3716,7 +3688,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 75.692 43.18 90)
 			(hide yes)
 			(show_name no)
@@ -3758,11 +3730,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "R9")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "R6")
+					(reference "R11")
 					(unit 1)
 				)
 			)
@@ -3786,7 +3754,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "57ef01f8-e80f-4f1f-8cb2-07bc7b14c4f2")
-		(property "Reference" "R10"
+		(property "Reference" "R12"
 			(at 154.94 44.4499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3808,7 +3776,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 150.622 45.72 90)
 			(hide yes)
 			(show_name no)
@@ -3850,11 +3818,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "R10")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "R9")
+					(reference "R12")
 					(unit 1)
 				)
 			)
@@ -3878,7 +3842,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "6576b78b-c7b4-4f67-bf9d-e40ed97cfa94")
-		(property "Reference" "D3"
+		(property "Reference" "D4"
 			(at 69.85 34.2899 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3942,11 +3906,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "D3")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "D3")
+					(reference "D4")
 					(unit 1)
 				)
 			)
@@ -3970,7 +3930,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "75fc2a01-1fbb-4c76-85ea-b0646590f1b9")
-		(property "Reference" "C12"
+		(property "Reference" "C14"
 			(at 140.97 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3992,7 +3952,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 138.1252 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -4034,11 +3994,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C12")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C7")
+					(reference "C14")
 					(unit 1)
 				)
 			)
@@ -4082,7 +4038,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Connector_BarrelJack:BarrelJack_CUI_PJ-102AH_Horizontal"
 			(at 33.02 35.306 0)
 			(hide yes)
 			(show_name no)
@@ -4130,10 +4086,6 @@
 					(reference "J23")
 					(unit 1)
 				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "J22")
-					(unit 1)
-				)
 			)
 			(project "power1"
 				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
@@ -4155,7 +4107,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "961835ed-5a26-4467-b7c6-bc799af68db6")
-		(property "Reference" "#PWR040"
+		(property "Reference" "#PWR056"
 			(at 58.42 53.34 0)
 			(hide yes)
 			(show_name no)
@@ -4215,11 +4167,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "#PWR040")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR040")
+					(reference "#PWR056")
 					(unit 1)
 				)
 			)
@@ -4263,7 +4211,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Fuse:Fuse_1206_3216Metric"
 			(at 50.8 30.48 0)
 			(hide yes)
 			(show_name no)
@@ -4309,10 +4257,6 @@
 					(reference "F2")
 					(unit 1)
 				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "F1")
-					(unit 1)
-				)
 			)
 			(project "power1"
 				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
@@ -4334,7 +4278,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a57078ff-1a84-41e9-bec7-138abaea7f7c")
-		(property "Reference" "C11"
+		(property "Reference" "C13"
 			(at 130.81 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4356,7 +4300,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 127.9652 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -4398,10 +4342,6 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C11")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C13")
 					(unit 1)
 				)
@@ -4426,7 +4366,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a8e0f6be-4524-4959-b987-04b436a20371")
-		(property "Reference" "U3"
+		(property "Reference" "U4"
 			(at 167.64 21.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4446,7 +4386,7 @@
 				)
 			)
 		)
-		(property "Footprint" "MP1584EN:SOIC127P600X170-9N"
+		(property "Footprint" "Package_SO:SOIC-8-1EP_3.9x4.9mm_P1.27mm_EP2.41x3.3mm"
 			(at 167.64 36.83 0)
 			(hide yes)
 			(show_name no)
@@ -4584,11 +4524,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "U3")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "U2")
+					(reference "U4")
 					(unit 1)
 				)
 			)
@@ -4612,7 +4548,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ab446337-7e90-49a8-893a-b348047803d4")
-		(property "Reference" "R11"
+		(property "Reference" "R13"
 			(at 190.5 49.5299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4634,7 +4570,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 186.182 50.8 90)
 			(hide yes)
 			(show_name no)
@@ -4676,11 +4612,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "R11")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "R10")
+					(reference "R13")
 					(unit 1)
 				)
 			)
@@ -4724,7 +4656,7 @@
 				)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Inductor_SMD:L_6.3x6.3_H3"
 			(at 198.12 31.75 0)
 			(hide yes)
 			(show_name no)
@@ -4769,10 +4701,6 @@
 					(reference "L1")
 					(unit 1)
 				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "L1")
-					(unit 1)
-				)
 			)
 			(project "power1"
 				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
@@ -4794,7 +4722,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "b733f3fd-8308-4a15-9dfa-a401015419e1")
-		(property "Reference" "#PWR042"
+		(property "Reference" "#PWR058"
 			(at 134.62 62.23 0)
 			(hide yes)
 			(show_name no)
@@ -4854,11 +4782,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "#PWR042")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "#PWR042")
+					(reference "#PWR058")
 					(unit 1)
 				)
 			)
@@ -4882,7 +4806,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bf930a06-8cc7-4749-9f56-ec16ade5921e")
-		(property "Reference" "D4"
+		(property "Reference" "D5"
 			(at 193.04 33.9724 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4946,11 +4870,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "D4")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "D4")
+					(reference "D5")
 					(unit 1)
 				)
 			)
@@ -5045,10 +4965,6 @@
 					(reference "Q1")
 					(unit 1)
 				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "Q1")
-					(unit 1)
-				)
 			)
 			(project "power1"
 				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
@@ -5070,7 +4986,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cbf50cde-9b2b-4f2f-9914-d4c18ddceb34")
-		(property "Reference" "R12"
+		(property "Reference" "R14"
 			(at 207.01 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5092,7 +5008,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Resistor_SMD:R_0603_1608Metric"
 			(at 202.692 40.64 90)
 			(hide yes)
 			(show_name no)
@@ -5134,11 +5050,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "R12")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "R7")
+					(reference "R14")
 					(unit 1)
 				)
 			)
@@ -5162,7 +5074,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e58094a8-ba10-417d-8d7d-4037d4ec7fb4")
-		(property "Reference" "C17"
+		(property "Reference" "C19"
 			(at 229.87 34.5439 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5184,7 +5096,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_1206_3216Metric"
 			(at 226.06 35.56 0)
 			(hide yes)
 			(show_name no)
@@ -5226,11 +5138,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C17")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C11")
+					(reference "C19")
 					(unit 1)
 				)
 			)
@@ -5254,7 +5162,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f1f00f0d-04cf-4dac-a510-0ed74f6b7681")
-		(property "Reference" "C16"
+		(property "Reference" "C18"
 			(at 220.98 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5276,7 +5184,7 @@
 				(justify left)
 			)
 		)
-		(property "Footprint" ""
+		(property "Footprint" "Capacitor_SMD:C_0805_2012Metric"
 			(at 218.1352 39.37 0)
 			(hide yes)
 			(show_name no)
@@ -5318,11 +5226,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
-					(reference "C16")
-					(unit 1)
-				)
-				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
-					(reference "C10")
+					(reference "C18")
 					(unit 1)
 				)
 			)
