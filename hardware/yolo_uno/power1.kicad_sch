@@ -2969,12 +2969,6 @@
 		(uuid "43356178-8530-41a0-b726-0137281bbcfd")
 	)
 	(junction
-		(at 54.61 39.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "43f9ca12-1f07-4d21-ae36-91cd9c9ba26c")
-	)
-	(junction
 		(at 39.37 39.37)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3009,6 +3003,12 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "6ed476f2-ad3e-489f-b7b1-5a39a2418327")
+	)
+	(junction
+		(at 118.11 31.75)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "7de6f15f-be7c-4b06-b6c6-b763f7162854")
 	)
 	(junction
 		(at 44.45 62.23)
@@ -3071,6 +3071,12 @@
 		(uuid "cf29ee1d-ad06-4398-907f-bc71c8cc77b3")
 	)
 	(junction
+		(at 77.47 39.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "d1bffd06-b7d0-467d-8b70-9ff93e21b670")
+	)
+	(junction
 		(at 152.4 54.61)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3087,12 +3093,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "d7fbd1a4-e2c7-488a-a122-4b59b3a2e555")
-	)
-	(junction
-		(at 118.11 31.75)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "e40276e4-e207-4c21-88aa-f019630f7e1a")
 	)
 	(junction
 		(at 140.97 80.01)
@@ -3269,16 +3269,6 @@
 			(type default)
 		)
 		(uuid "15eb97ad-c892-494e-9be4-b8cd4ff18013")
-	)
-	(wire
-		(pts
-			(xy 54.61 39.37) (xy 67.31 39.37)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "167c400d-6c4a-4db7-b2d4-30ab28c35f48")
 	)
 	(wire
 		(pts
@@ -3632,6 +3622,16 @@
 	)
 	(wire
 		(pts
+			(xy 67.31 39.37) (xy 77.47 39.37)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "6026ad9f-5b16-4e35-9b7d-0fd0ba6bcdd6")
+	)
+	(wire
+		(pts
 			(xy 53.34 142.24) (xy 92.71 142.24)
 		)
 		(stroke
@@ -3672,7 +3672,7 @@
 	)
 	(wire
 		(pts
-			(xy 110.49 31.75) (xy 127 31.75)
+			(xy 110.49 31.75) (xy 118.11 31.75)
 		)
 		(stroke
 			(width 0)
@@ -3719,6 +3719,16 @@
 			(type default)
 		)
 		(uuid "7bcbf969-b190-412f-94a2-d09da809c172")
+	)
+	(wire
+		(pts
+			(xy 118.11 31.75) (xy 127 31.75)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "80525282-e5fc-4d4e-aeac-2648824fa7ee")
 	)
 	(wire
 		(pts
@@ -7266,7 +7276,8 @@
 	)
 	(symbol
 		(lib_id "Transistor_FET:AO3401A")
-		(at 77.47 34.29 90)
+		(at 77.47 34.29 270)
+		(mirror x)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7274,7 +7285,6 @@
 		(on_board yes)
 		(in_pos_files yes)
 		(dnp no)
-		(fields_autoplaced yes)
 		(uuid "c0360f90-9935-4d2d-bce0-c793942bf5b5")
 		(property "Reference" "Q1"
 			(at 77.47 25.4 90)
@@ -7297,7 +7307,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 79.375 29.21 0)
+			(at 75.565 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7310,7 +7320,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf"
-			(at 81.28 29.21 0)
+			(at 73.66 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
