@@ -6,6 +6,52 @@
 	(paper "A4")
 	(lib_symbols)
 	(sheet
+		(at 231.14 123.19)
+		(size 48.26 38.1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(stroke
+			(width 0.1524)
+			(type solid)
+		)
+		(fill
+			(color 0 0 0 0)
+		)
+		(uuid "2e71616c-18d4-42db-b8e4-e63dc6c01c63")
+		(property "Sheetname" "power1"
+			(at 231.14 122.4784 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left bottom)
+			)
+		)
+		(property "Sheetfile" "power1.kicad_sch"
+			(at 231.14 161.8746 0)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left top)
+			)
+		)
+		(instances
+			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371"
+					(page "5")
+				)
+			)
+		)
+	)
+	(sheet
 		(at 15.24 15.24)
 		(size 113.03 107.95)
 		(exclude_from_sim no)

@@ -632,7 +632,7 @@
         "uuid": "0428c6fb-f6b4-4caf-86cc-ec5b99cc8371"
       }
     ],
-    "used_designators": "U1-2,D1,#PWR1-47,C1-9,R1-8,#FLG1-2,J1-22,SW1-2,F1",
+    "used_designators": "C10-17,L1,D2-4,F2,R9-13,J23,Q1,U3",
     "variants": []
   },
   "sheets": [
@@ -651,6 +651,10 @@
     [
       "dd86723f-ffb6-4600-9c4e-7a2452521e6a",
       "peripheralsSheet"
+    ],
+    [
+      "2e71616c-18d4-42db-b8e4-e63dc6c01c63",
+      "power1"
     ]
   ],
   "text_variables": {},

@@ -3056,7 +3056,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "0181b349-416f-485f-b659-c0bbe09f4bae")
-		(property "Reference" "C8"
+		(property "Reference" "C13"
 			(at 186.69 16.51 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3117,6 +3117,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C13")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C8")
 					(unit 1)
@@ -3201,6 +3205,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "#PWR041")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "#PWR041")
 					(unit 1)
@@ -3226,7 +3234,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "26cbd860-0062-4604-aa37-dc70833aa1d2")
-		(property "Reference" "C12"
+		(property "Reference" "C14"
 			(at 191.77 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3289,6 +3297,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C14")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C12")
 					(unit 1)
@@ -3314,7 +3326,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "2df43bc5-8d6b-4d54-8b5a-9165fab9faf9")
-		(property "Reference" "C9"
+		(property "Reference" "C15"
 			(at 213.36 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3377,6 +3389,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C15")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C9")
 					(unit 1)
@@ -3465,6 +3481,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "D2")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "D2")
 					(unit 1)
@@ -3490,7 +3510,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "4bd3765d-c2e8-43e4-bce1-f60ad585371d")
-		(property "Reference" "C6"
+		(property "Reference" "C10"
 			(at 121.92 34.5439 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3553,6 +3573,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C10")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C6")
 					(unit 1)
@@ -3578,7 +3602,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "50ca9de2-83f4-40cc-a4ae-8de45f31d91e")
-		(property "Reference" "R8"
+		(property "Reference" "R13"
 			(at 207.01 46.9899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3641,6 +3665,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "R13")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "R8")
 					(unit 1)
@@ -3666,7 +3694,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "57b1c72e-1be8-4eb8-b795-02a87a0859bd")
-		(property "Reference" "R6"
+		(property "Reference" "R9"
 			(at 80.01 41.9099 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3729,6 +3757,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "R9")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "R6")
 					(unit 1)
@@ -3754,7 +3786,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "57ef01f8-e80f-4f1f-8cb2-07bc7b14c4f2")
-		(property "Reference" "R9"
+		(property "Reference" "R10"
 			(at 154.94 44.4499 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3817,6 +3849,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "R10")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "R9")
 					(unit 1)
@@ -3905,6 +3941,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "D3")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "D3")
 					(unit 1)
@@ -3930,7 +3970,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "75fc2a01-1fbb-4c76-85ea-b0646590f1b9")
-		(property "Reference" "C7"
+		(property "Reference" "C12"
 			(at 140.97 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -3993,6 +4033,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C12")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C7")
 					(unit 1)
@@ -4018,7 +4062,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "7ebb156e-48b1-46db-a511-2e53f84f90aa")
-		(property "Reference" "J22"
+		(property "Reference" "J23"
 			(at 31.75 25.4 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4082,6 +4126,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "J23")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "J22")
 					(unit 1)
@@ -4166,6 +4214,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "#PWR040")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "#PWR040")
 					(unit 1)
@@ -4191,7 +4243,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a2a5a32e-1287-4f0b-b76e-b7b09c3860d0")
-		(property "Reference" "F1"
+		(property "Reference" "F2"
 			(at 45.72 25.4 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4253,6 +4305,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "F2")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "F1")
 					(unit 1)
@@ -4278,7 +4334,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a57078ff-1a84-41e9-bec7-138abaea7f7c")
-		(property "Reference" "C13"
+		(property "Reference" "C11"
 			(at 130.81 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4341,6 +4397,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C11")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C13")
 					(unit 1)
@@ -4366,7 +4426,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "a8e0f6be-4524-4959-b987-04b436a20371")
-		(property "Reference" "U2"
+		(property "Reference" "U3"
 			(at 167.64 21.59 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4523,6 +4583,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "U3")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "U2")
 					(unit 1)
@@ -4548,7 +4612,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "ab446337-7e90-49a8-893a-b348047803d4")
-		(property "Reference" "R10"
+		(property "Reference" "R11"
 			(at 190.5 49.5299 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -4611,6 +4675,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "R11")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "R10")
 					(unit 1)
@@ -4697,6 +4765,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "L1")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "L1")
 					(unit 1)
@@ -4781,6 +4853,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "#PWR042")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "#PWR042")
 					(unit 1)
@@ -4869,6 +4945,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "D4")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "D4")
 					(unit 1)
@@ -4961,6 +5041,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "Q1")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "Q1")
 					(unit 1)
@@ -4986,7 +5070,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "cbf50cde-9b2b-4f2f-9914-d4c18ddceb34")
-		(property "Reference" "R7"
+		(property "Reference" "R12"
 			(at 207.01 39.3699 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5049,6 +5133,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "R12")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "R7")
 					(unit 1)
@@ -5074,7 +5162,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "e58094a8-ba10-417d-8d7d-4037d4ec7fb4")
-		(property "Reference" "C11"
+		(property "Reference" "C17"
 			(at 229.87 34.5439 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5137,6 +5225,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C17")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C11")
 					(unit 1)
@@ -5162,7 +5254,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f1f00f0d-04cf-4dac-a510-0ed74f6b7681")
-		(property "Reference" "C10"
+		(property "Reference" "C16"
 			(at 220.98 34.2899 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5225,6 +5317,10 @@
 		)
 		(instances
 			(project "yolo_uno"
+				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/2e71616c-18d4-42db-b8e4-e63dc6c01c63"
+					(reference "C16")
+					(unit 1)
+				)
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/d6667f94-7bae-4c3f-93ae-38edba314209"
 					(reference "C10")
 					(unit 1)
@@ -5238,10 +5334,4 @@
 			)
 		)
 	)
-	(sheet_instances
-		(path "/"
-			(page "1")
-		)
-	)
-	(embedded_fonts no)
 )
