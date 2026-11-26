@@ -51,3 +51,13 @@ fp-info-cache
 
 #== img ===
 img/
+
+# File tạm của Microsoft Office / Excel
+~$*
+*.tmp
+
+# File tạm và backup của KiCad (nếu chung repo)
+*-backups/
+*.lck
+*.kicad_pcb-bak
+*.kicad_sch-bak
