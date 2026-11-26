@@ -2748,16 +2748,6 @@
 			(embedded_fonts no)
 		)
 	)
-	(text "5v adapter\n\n"
-		(exclude_from_sim no)
-		(at 87.376 80.772 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "1df4577e-8bd7-4103-a63b-9394f76bb5aa")
-	)
 	(text "option 2\n\n"
 		(exclude_from_sim no)
 		(at 146.558 103.886 0)
@@ -2768,96 +2758,6 @@
 		)
 		(uuid "206c5a07-4588-43d0-a3f2-de384debc8d5")
 	)
-	(text "5v usb\n"
-		(exclude_from_sim no)
-		(at 33.782 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "31cb5663-b09d-4840-b1ca-b7ab76c6d666")
-	)
-	(text "5V rail\n"
-		(exclude_from_sim no)
-		(at 164.846 80.264 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "32edf0f9-cee4-46bc-94c2-ef25a0ff1f95")
-	)
-	(text "5V rail\n"
-		(exclude_from_sim no)
-		(at 57.658 99.06 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "47e77caf-61ce-4403-9953-28cb0de25742")
-	)
-	(text "5V rail\n"
-		(exclude_from_sim no)
-		(at 43.688 122.428 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "49e0a653-2114-4a4b-9d01-271e0a28e399")
-	)
-	(text "12 v pro\n"
-		(exclude_from_sim no)
-		(at 110.744 29.972 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "564324e2-fd25-4d80-a7cd-f1f8ade66e9b")
-	)
-	(text "3.3v rail\n"
-		(exclude_from_sim no)
-		(at 108.458 128.27 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "61e21107-b43f-4a8b-95d2-f37b4b052ea5")
-	)
-	(text "5v adapter\n\n"
-		(exclude_from_sim no)
-		(at 132.08 67.564 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "63ac5ddd-ddad-48c6-a17f-31a88e11793d")
-	)
-	(text "5v"
-		(exclude_from_sim no)
-		(at 235.204 32.004 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "c55d90fa-58a8-4fd5-8527-83e2a6f92526")
-	)
-	(text "5v usb\n"
-		(exclude_from_sim no)
-		(at 102.362 80.01 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "ea22d800-7f8a-43c5-af67-f365a517bea6")
-	)
 	(text "option 1\n"
 		(exclude_from_sim no)
 		(at 57.912 102.87 0)
@@ -2867,16 +2767,6 @@
 			)
 		)
 		(uuid "f1e58373-9620-4173-a4b6-1bebd89dadc0")
-	)
-	(text "12 v pro\n"
-		(exclude_from_sim no)
-		(at 88.646 32.512 0)
-		(effects
-			(font
-				(size 1.27 1.27)
-			)
-		)
-		(uuid "ffa93041-0ac0-4b4d-b0f7-23c7e8998758")
 	)
 	(junction
 		(at 53.34 142.24)
@@ -3023,6 +2913,12 @@
 		(uuid "8157b768-6448-4e2c-b003-c23044ec13fb")
 	)
 	(junction
+		(at 77.47 39.37)
+		(diameter 0)
+		(color 0 0 0 0)
+		(uuid "8974a7ee-e52d-43b9-9138-8c3d12903cfc")
+	)
+	(junction
 		(at 204.47 31.75)
 		(diameter 0)
 		(color 0 0 0 0)
@@ -3069,12 +2965,6 @@
 		(diameter 0)
 		(color 0 0 0 0)
 		(uuid "cf29ee1d-ad06-4398-907f-bc71c8cc77b3")
-	)
-	(junction
-		(at 77.47 39.37)
-		(diameter 0)
-		(color 0 0 0 0)
-		(uuid "d1bffd06-b7d0-467d-8b70-9ff93e21b670")
 	)
 	(junction
 		(at 152.4 54.61)
@@ -3662,6 +3552,16 @@
 	)
 	(wire
 		(pts
+			(xy 97.79 128.27) (xy 102.87 128.27)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "65d45c36-51bb-4f17-8363-2c76637d61c7")
+	)
+	(wire
+		(pts
 			(xy 57.15 91.44) (xy 57.15 97.79)
 		)
 		(stroke
@@ -3789,16 +3689,6 @@
 			(type default)
 		)
 		(uuid "8ef92c12-c9bc-4ea1-a390-90880078e5db")
-	)
-	(wire
-		(pts
-			(xy 97.79 128.27) (xy 102.87 128.27)
-		)
-		(stroke
-			(width 0)
-			(type default)
-		)
-		(uuid "90cfcfca-4300-4767-9aa5-7397493477eb")
 	)
 	(wire
 		(pts
@@ -4159,6 +4049,270 @@
 			(type default)
 		)
 		(uuid "fdd7d263-7cc3-4dd6-b68a-64996e1cd668")
+	)
+	(global_label "5V_BUCK"
+		(shape input)
+		(at 81.28 80.01 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "115d1b73-1e38-4d76-b9b0-a442095960aa")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 92.6714 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "12V_PRO"
+		(shape input)
+		(at 110.49 31.75 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "465e7fab-586a-4053-bdf5-0d09558003f6")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 110.49 20.4191 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "5C_RAIL"
+		(shape input)
+		(at 158.75 80.01 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "7baf09b6-d93b-4f8d-9a05-b6dcde3eb0c7")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 169.1738 80.01 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "5V_BUCK"
+		(shape input)
+		(at 232.41 31.75 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "93687867-4192-424e-bfcc-6b2b6c98a5bd")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 243.8014 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "3.3V_RAIL"
+		(shape input)
+		(at 102.87 128.27 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "afbd5ee0-79e6-42d8-ab61-eb29f4d3065d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 114.9267 128.27 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "12V_PRO"
+		(shape input)
+		(at 82.55 31.75 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "b50d5d21-3d1c-4959-a270-074fde836710")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 93.8809 31.75 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "5C_RAIL"
+		(shape input)
+		(at 57.15 97.79 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "c930920f-b4fc-4b36-9e33-8fca38bc320b")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 67.5738 97.79 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "5V_USB"
+		(shape input)
+		(at 38.1 80.01 270)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify right)
+		)
+		(uuid "d3b9ee4f-5412-45bc-b9c9-f34549459713")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 38.1 90.0709 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify right)
+			)
+		)
+	)
+	(global_label "5V_BUCK"
+		(shape input)
+		(at 132.08 68.58 0)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d446d45b-000d-4009-9069-203ad054a974")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 143.4714 68.58 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "5V_USB"
+		(shape input)
+		(at 106.68 80.01 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "d6c2fae1-fc54-4c92-a420-b1a98b097374")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 106.68 69.9491 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
+	)
+	(global_label "5C_RAIL"
+		(shape input)
+		(at 43.18 124.46 90)
+		(fields_autoplaced yes)
+		(effects
+			(font
+				(size 1.27 1.27)
+			)
+			(justify left)
+		)
+		(uuid "ecb3b7e6-1cdc-45b5-99a5-a645b398102d")
+		(property "Intersheetrefs" "${INTERSHEET_REFS}"
+			(at 43.18 114.0362 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+				(justify left)
+			)
+		)
 	)
 	(symbol
 		(lib_id "Device:C")
@@ -7276,8 +7430,7 @@
 	)
 	(symbol
 		(lib_id "Transistor_FET:AO3401A")
-		(at 77.47 34.29 270)
-		(mirror x)
+		(at 77.47 34.29 90)
 		(unit 1)
 		(body_style 1)
 		(exclude_from_sim no)
@@ -7307,7 +7460,7 @@
 			)
 		)
 		(property "Footprint" "Package_TO_SOT_SMD:SOT-23"
-			(at 75.565 29.21 0)
+			(at 79.375 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -7320,7 +7473,7 @@
 			)
 		)
 		(property "Datasheet" "http://www.aosmd.com/pdfs/datasheet/AO3401A.pdf"
-			(at 73.66 29.21 0)
+			(at 81.28 29.21 0)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
