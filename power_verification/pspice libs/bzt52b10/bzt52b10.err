@@ -1,0 +1,8 @@
+STATUS: PSpice Schematics to Capture translator (23.1.0.d001)
+STATUS:  
+STATUS: Translator started at Thursday, November 26, 2026 20:07:59
+STATUS: C:\Cadence\PSpiceTI\tools\bin\sch2cap -f "C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\LTSpiceModels-master\LTSpiceModels-master\AO3401A.mod" -o "C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\bzt52b10.OLB" -i C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install/23.1.0/PSpice.ini -d 00000000000D0AE4
+INFO(ORSCH-1029): Using existing library 'C:\Cadence\PSpiceTI\tools\Capture\Library\PSpice\modeled.etc'.
+INFO(ORSCH-1029): Using existing library 'C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\bzt52b10.olb'.
+STATUS: Translator stopped at Thursday, November 26, 2026 20:07:59
+STATUS: 0 Error messages, 0 Warning messages

@@ -3255,7 +3255,7 @@
 	)
 	(wire
 		(pts
-			(xy 143.51 45.72) (xy 110.49 45.72)
+			(xy 143.51 45.72) (xy 125.73 45.72)
 		)
 		(stroke
 			(width 0)
@@ -3362,6 +3362,16 @@
 			(type default)
 		)
 		(uuid "28edb08d-38df-4fe2-9a2a-7c795341b936")
+	)
+	(wire
+		(pts
+			(xy 118.11 45.72) (xy 110.49 45.72)
+		)
+		(stroke
+			(width 0)
+			(type default)
+		)
+		(uuid "28f09de7-18b4-4d40-9a61-acf7a310eb12")
 	)
 	(wire
 		(pts
@@ -4287,7 +4297,7 @@
 			)
 		)
 	)
-	(global_label "12V_PRO"
+	(global_label "VIN_PROT"
 		(shape input)
 		(at 110.49 31.75 90)
 		(fields_autoplaced yes)
@@ -4297,9 +4307,9 @@
 			)
 			(justify left)
 		)
-		(uuid "465e7fab-586a-4053-bdf5-0d09558003f6")
+		(uuid "52bba677-ec7f-489b-8c00-528bef3bd3c5")
 		(property "Intersheetrefs" "${INTERSHEET_REFS}"
-			(at 110.49 20.4191 90)
+			(at 110.49 19.9352 90)
 			(hide yes)
 			(show_name no)
 			(do_not_autoplace no)
@@ -5933,6 +5943,86 @@
 			(project "power1"
 				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
 					(reference "R9")
+					(unit 1)
+				)
+			)
+		)
+	)
+	(symbol
+		(lib_id "Device:R")
+		(at 121.92 45.72 90)
+		(unit 1)
+		(body_style 1)
+		(exclude_from_sim no)
+		(in_bom yes)
+		(on_board yes)
+		(in_pos_files yes)
+		(dnp no)
+		(fields_autoplaced yes)
+		(uuid "5d31cab9-8397-44ee-8c7b-d4ca99dab553")
+		(property "Reference" "R11"
+			(at 121.92 39.37 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Value" "100k"
+			(at 121.92 41.91 90)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Footprint" ""
+			(at 121.92 47.498 90)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Datasheet" ""
+			(at 121.92 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "Description" "Resistor"
+			(at 121.92 45.72 0)
+			(hide yes)
+			(show_name no)
+			(do_not_autoplace no)
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(pin "2"
+			(uuid "6a8b8ccd-d880-4f20-8a57-25e5551ae07e")
+		)
+		(pin "1"
+			(uuid "8224a353-f082-4617-b477-d9c897d81af6")
+		)
+		(instances
+			(project "power1"
+				(path "/eaf3becd-95f4-463d-8e9e-3065432e3376"
+					(reference "R11")
 					(unit 1)
 				)
 			)

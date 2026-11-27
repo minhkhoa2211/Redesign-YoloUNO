@@ -1,0 +1,25 @@
+** Profile: "SCHEMATIC1-bias"  [ c:\users\bahuy\onedrive\desktop\btl_dien\power_verification-PSpiceFiles\SCHEMATIC1\bias.sim ] 
+
+** Creating circuit file "bias.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.INC "../../../ltspicemodels-master/ltspicemodels-master/ao3401a.mod" 
+.INC "../../../smbj-series-thermal-pspice/smbj_thermal_05-07-25_encrypted_w_17-2.lib" 
+.INC "../../../bzt52b10.lib" 
+.STMLIB "../../../smbj-series-thermal-pspice/smbj_thermal_05-07-25_encrypted_w_17-2.lib" 
+.STMLIB "../../../ltspicemodels-master/ltspicemodels-master/ao3401a.asy" 
+.STMLIB "../../../bzt52b10.lib" 
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.INC "..\SCHEMATIC1.net" 
+
+
+.END
