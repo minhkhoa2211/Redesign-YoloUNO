@@ -519,8 +519,8 @@
     "meta": {
       "version": 5
     },
-    "net_colors": {},
-    "netclass_assignments": {},
+    "net_colors": null,
+    "netclass_assignments": null,
     "netclass_patterns": []
   },
   "pcbnew": {
@@ -652,7 +652,7 @@
         "uuid": "0428c6fb-f6b4-4caf-86cc-ec5b99cc8371"
       }
     ],
-    "used_designators": "U1-2,D1,#PWR1-47,C1-9,R1-8,#FLG1-2,J1-22,SW1-2,F1",
+    "used_designators": "J1-23,IC1,R1-17,#FLG1-6,L1-2,D1-7,#PWR1-64,C1-30,F1-2,Q1,SW1-2,U1-5",
     "variants": []
   },
   "sheets": [
@@ -671,6 +671,10 @@
     [
       "dd86723f-ffb6-4600-9c4e-7a2452521e6a",
       "peripheralsSheet"
+    ],
+    [
+      "c09ed891-591c-4705-b87e-484e53b935bc",
+      "power1"
     ]
   ],
   "text_variables": {},

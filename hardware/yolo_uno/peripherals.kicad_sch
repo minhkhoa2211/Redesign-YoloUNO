@@ -6672,7 +6672,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "04456100-0207-495b-a44a-b32ee87e48b5")
-		(property "Reference" "#PWR031"
+		(property "Reference" "#PWR030"
 			(at 95.25 111.76 0)
 			(hide yes)
 			(show_name no)
@@ -6732,7 +6732,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR031")
+					(reference "#PWR030")
 					(unit 1)
 				)
 			)
@@ -6749,7 +6749,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "04c06f7a-0226-4c6e-863c-b0f3168fca24")
-		(property "Reference" "D2"
+		(property "Reference" "D1"
 			(at 100.33 85.598 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -6819,7 +6819,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "D2")
+					(reference "D1")
 					(unit 1)
 				)
 			)
@@ -6992,7 +6992,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "083c0c15-f3ca-4df0-8093-0600d8f63f51")
-		(property "Reference" "#PWR030"
+		(property "Reference" "#PWR029"
 			(at 95.25 83.82 0)
 			(hide yes)
 			(show_name no)
@@ -7052,7 +7052,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR030")
+					(reference "#PWR029")
 					(unit 1)
 				)
 			)
@@ -7146,7 +7146,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "09aebe43-4d78-4155-9c42-7825df79e711")
-		(property "Reference" "#PWR027"
+		(property "Reference" "#PWR026"
 			(at 77.47 92.71 0)
 			(hide yes)
 			(show_name no)
@@ -7206,7 +7206,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR027")
+					(reference "#PWR026")
 					(unit 1)
 				)
 			)
@@ -8870,7 +8870,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "5e3b3a5e-4028-4419-98aa-2ed328845162")
-		(property "Reference" "R9"
+		(property "Reference" "R10"
 			(at 120.65 81.28 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -8932,7 +8932,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "R9")
+					(reference "R10")
 					(unit 1)
 				)
 			)
@@ -9505,7 +9505,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "75032ca0-f274-44ef-bc99-0876a05596df")
-		(property "Reference" "#PWR028"
+		(property "Reference" "#PWR027"
 			(at 85.09 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -9565,7 +9565,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR028")
+					(reference "#PWR027")
 					(unit 1)
 				)
 			)
@@ -9582,7 +9582,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "79a0045b-fdd2-4ce5-8b08-24c2528daacc")
-		(property "Reference" "D1"
+		(property "Reference" "D2"
 			(at 131.572 80.518 0)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9655,7 +9655,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "D1")
+					(reference "D2")
 					(unit 1)
 				)
 			)
@@ -9749,7 +9749,7 @@
 		(in_pos_files yes)
 		(dnp no)
 		(uuid "82e4179a-a162-44d1-9989-da2978c4c2e0")
-		(property "Reference" "R10"
+		(property "Reference" "R9"
 			(at 76.2 92.964 90)
 			(show_name no)
 			(do_not_autoplace no)
@@ -9811,7 +9811,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "R10")
+					(reference "R9")
 					(unit 1)
 				)
 			)
@@ -9983,7 +9983,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8cbb21ba-12b4-4367-8990-b4e55d500c6a")
-		(property "Reference" "#PWR026"
+		(property "Reference" "#PWR025"
 			(at 73.66 177.8 0)
 			(hide yes)
 			(show_name no)
@@ -10043,7 +10043,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR026")
+					(reference "#PWR025")
 					(unit 1)
 				)
 			)
@@ -10145,7 +10145,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "8f5cabc9-9fd1-48d7-8513-7ab57a584a31")
-		(property "Reference" "#PWR025"
+		(property "Reference" "#PWR024"
 			(at 57.15 176.53 0)
 			(hide yes)
 			(show_name no)
@@ -10205,7 +10205,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR025")
+					(reference "#PWR024")
 					(unit 1)
 				)
 			)
@@ -11706,7 +11706,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "bb48773e-6b16-4cc7-9283-76494afba737")
-		(property "Reference" "#PWR029"
+		(property "Reference" "#PWR028"
 			(at 91.44 129.54 0)
 			(hide yes)
 			(show_name no)
@@ -11766,7 +11766,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR029")
+					(reference "#PWR028")
 					(unit 1)
 				)
 			)
@@ -11948,7 +11948,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "d35627b2-88ff-45b0-9354-9c476688a459")
-		(property "Reference" "#PWR023"
+		(property "Reference" "#PWR031"
 			(at 139.7 93.98 0)
 			(hide yes)
 			(show_name no)
@@ -12008,7 +12008,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR023")
+					(reference "#PWR031")
 					(unit 1)
 				)
 			)
@@ -12290,7 +12290,7 @@
 		(dnp no)
 		(fields_autoplaced yes)
 		(uuid "f08d3fcc-7fc2-4111-97d5-132b2c71db42")
-		(property "Reference" "#PWR024"
+		(property "Reference" "#PWR023"
 			(at 57.15 148.59 0)
 			(hide yes)
 			(show_name no)
@@ -12350,7 +12350,7 @@
 		(instances
 			(project "yolo_uno"
 				(path "/0428c6fb-f6b4-4caf-86cc-ec5b99cc8371/dd86723f-ffb6-4600-9c4e-7a2452521e6a"
-					(reference "#PWR024")
+					(reference "#PWR023")
 					(unit 1)
 				)
 			)
