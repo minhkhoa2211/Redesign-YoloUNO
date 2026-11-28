@@ -1,0 +1,568 @@
+
+**** 11/28/26 11:26:15 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC2-power_protect_overvoltage"  [ C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\power_verification-pspicefiles\schema
+
+
+ ****     CIRCUIT DESCRIPTION
+
+
+******************************************************************************
+
+
+
+
+** Creating circuit file "power_protect_overvoltage.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.INC "../../../ltspicemodels-master/ltspicemodels-master/ao3401a.mod" 
+
+**** INCLUDING ao3401a.mod ****
+.SUBCKT AO3401A 4 1 2
+M1  3 1 2 2 PMOS W=998956u  L=1.0u 
+M2  2 1 2 4 NMOS W=998956u  L=0.7u
+R1  4 3     RTEMP 17E-3
+CGS 1 2     30E-12
+DBD 3 2     DBD
+**************************************************************************
+.MODEL  PMOS       PMOS  (LEVEL  = 3               TOX    = 2.5E-8
++ RS     = 2E-4           RD     = 0               NSUB   = 2E17  
++ UO     = 120             THETA  = 0.2            VTO=-1.1
++ VMAX   = 5e6             XJ     = 4E-7            KAPPA  = 1.2
++ ETA    = 0              TPG    = 1  
++ IS     = 0              LD     = 0                           
++ CGSO   = 0              CGDO   = 0               CGBO   = 0 
++ NFS    = 2E10         DELTA  = 0)
+*************************************************************************
+.MODEL  NMOS       NMOS (LEVEL   = 3               TOX    = 5.2E-8
++NSUB    = 2.0E16           TPG    = -1)   
+*************************************************************************
+.MODEL DBD D (CJO=900E-13     VJ=0.6    M=0.3
++RS=0.005 FC=0.5 IS=1E-12 TT=1.6E-8 N=1.0 BV=36 IBV=1E-4)
+*************************************************************************
+.MODEL RTEMP RES (TC1=1.5E-3   TC2=1E-6)
+*************************************************************************
+.ENDS  
+
+**** RESUMING power_protect_overvoltage.cir ****
+.INC "../../../smbj-series-thermal-pspice/smbj_thermal_05-07-25_encrypted_w_17-2.lib" 
+
+**** INCLUDING smbj_thermal_05-07-25_encrypted_w_17-2.lib ****
+*$ File     : smbj_thermal.LIB
+*$ PSPICE thermal models
+*$ Revision : 2.0
+*$ Date     : May 2025
+*$============================================================================
+*$ Component Library for Pspice Simulator
+*$ Validated with PSpice 17.4
+*$ Encrypted with 17.2
+*$============================================================================
+*$ Model features :
+*$ - working at different ambient temperature (different than 27C)
+*$ - Thermal electrical behavior taken into account
+*$ - typical breakdown voltage are only taken into account
+*$ - to help convergence, thermal voltage increasing is limited if device temperature is abnormal
+*$ - warning: leakage current could be out of specification according to part-number
+*$*************************************************************************
+*$ Information included is believed to be accurate and reliable. However, *
+*$ ST Microelectronics assumes no responsibility for the consequences of  *
+*$ use of such information nor for any infringement of patents or other   *
+*$ rights of third parties which may result from its use. No license is   *
+*$ granted by implication or otherwise under any patent patent rights of  *
+*$ ST Microelectronics. Specification mentionned in this publication are  *
+*$ subject to change without notice. This publication superseedes and     *
+*$ replaces all information previously supplied. ST Microelectronics      *
+*$ products are not authorized for use as critical components in life     *
+*$ support or systems without express written approval of ST              *
+*$ Microelectronics.                                                      *
+*$                                                                        *
+*$    (c) 2026 ST Microelectronics. All rights reserved.                  *
+*$                                                                        *
+*$           ST Microelectronics GROUP OF COMPANIES                       *
+*$ Australia - Brazil - France - Germany - Hong Kong - Italy - Japan      *
+*$ Korea - Malaysia - Malta - Morocco - The Netherlands - Singapore       *
+*$ Spain - Sweden - Switzerland - Taiwan - United Kingdom - U.S.A.        *
+*$                                                                        *
+*$*************************************************************************
+*$
+
+.SUBCKT TRANSIL_SMBJ  A  Cathode  PARAMS:
++ IRM=1u VBRnom=12  IR=1m Cjof=1n
++ AlphaT=0.8m ISF=1f  NF=1  RSF=1m  IKFF=1000
+* IRM           Stand-off current at VRM
+* VBR           Breakdown voltage
+* IR            Reverse current at VBR
+* Cjo           junction capacitance at 0V
+* AlphaT        temparature coefficient VBR
+* IS            Saturation current
+* N             Emission coefficient
+* RS            Serie rsistance
+* IKF           High injection knee current
+***** SCHEMATICS DESCRIPTION *****
+.ENDS
+*$
+.SUBCKT   TRANSILB_SMBJ   A1  A2   PARAMS:
++ IRM=1u VBRnom=12 IR=1m  Cjof=1n
++ AlphaT=0.8m
+***** SCHEMATICS DESCRIPTION *****
+.ENDS
+*$
+.SUBCKT  SMBJ5_0A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ5_0CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ6_0A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ6_0CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ6_5A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ6_5CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ8_5A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ8_5CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ10A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ10CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ12A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ12CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ13A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ13CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ15A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ15CA  Anode1  Anode2
+.ENDS 
+*$
+.SUBCKT  SMBJ16A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ16CA  Anode1  Anode2
+.ENDS 
+*$
+.SUBCKT  SMBJ18A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ18CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ20A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ20CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ22A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ22CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ24A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ24CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ26A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ26CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ28A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ28CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ30A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ30CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ33A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ33CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ36A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ36CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ40A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ40CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ48A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ48CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ58A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ58CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ64A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ64CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ70A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ70CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ85A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ85CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ100A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ100CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ130A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ130CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ154A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ154CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ170A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ170CA  Anode1  Anode2
+.ENDS
+*$
+.SUBCKT  SMBJ188A  Anode  Cathode
+.ENDS
+*$
+.SUBCKT  SMBJ188CA  Anode1  Anode2
+.ENDS
+*$
+
+
+**** RESUMING power_protect_overvoltage.cir ****
+.INC "../../../bzt52b10.lib" 
+
+**** INCLUDING bzt52b10.lib ****
+*******************************************
+*
+*BZT52-B10
+*
+*Nexperia
+*
+*Single Zener diodes in a SOD123 package
+*
+*
+*VZmax = 10,2V @ Iz = 5mA
+*
+* 
+*VFmax = 0,9V  @ IF = 10mA
+*IRmax = 200nA  @ VR = 7V
+*
+*
+*
+*
+*
+*  
+*
+*
+*
+*Package pinning does not match Spice model pinning.
+*Package: SOD123
+*
+*Package Pin 1: cathode   
+*Package Pin 2: anode
+*
+*
+*
+*Extraction date (week/year): 10/2022
+*Simulator: SPICE3
+*
+*******************************************
+*#
+.SUBCKT BZT52-B10 1 2
+R1 1 2 1E+12
+D1 1 2
++ DIODE1
+D2 1 2
++ DIODE2
+*
+*The resistor R1 and the diode D2 do not reflect  
+*physical devices but improve only modeling  
+*in the forward mode of operation.
+*       
+.MODEL DIODE1 D
++ IS = 4E-16
++ N = 1
++ BV = 9.85
++ IBV = 1E-05
++ RS = 0.476
++ CJO = 4.6E-11
++ VJ = 0.64
++ M = 0.33
++ FC = 0.5
++ TT = 0
++ EG = 1.1
++ XTI = 3
+.MODEL DIODE2 D
++ IS = 7E-18
++ N = 1.25
++ RS = 8
+.ENDS
+*
+
+
+
+
+
+
+
+
+
+
+
+
+
+**** RESUMING power_protect_overvoltage.cir ****
+.STMLIB "../../../smbj-series-thermal-pspice/smbj_thermal_05-07-25_encrypted_w_17-2.lib" 
+.STMLIB "../../../ltspicemodels-master/ltspicemodels-master/ao3401a.asy" 
+.STMLIB "../../../bzt52b10.lib" 
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 4ms 0 1u 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 V(alias(*)) I(alias(*)) W(alias(*)) D(alias(*)) NOISE(alias(*)) 
+.INC "..\SCHEMATIC2.net" 
+
+
+
+**** INCLUDING SCHEMATIC2.net ****
+* source POWER_VERIFICATION
+R_R6         0 N02980  100k TC=0,0 
+C_C7         0 N02984  22uf  TC=0,0 
+C_C6         N02984 0  100uf  
+X_U5         N02984 N02980 BZT52-B10 
+R_R5         N03040 N03046  0.05 TC=0,0 
+X_D3         0 N03046 SMBJ16A
+X_U6         N03046 N02980 N02984 AO3401A 
+V_V5         N03040 0  
++PULSE 12 24 1ms 10us 10us 1ms 5ms
+
+**** RESUMING power_protect_overvoltage.cir ****
+.END
+
+**** 11/28/26 11:26:15 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC2-power_protect_overvoltage"  [ C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\power_verification-pspicefiles\schema
+
+
+ ****     Diode MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U5.DIODE1     X_U5.DIODE2     X_U6.DBD        
+          IS  400.000000E-18    7.000000E-18    1.000000E-12 
+           N                    1.25                         
+          BV    9.85                           36            
+         IBV   10.000000E-06                  100.000000E-06 
+          RS     .476           8               5.000000E-03 
+          TT                                   16.000000E-09 
+         CJO   46.000000E-12                   90.000000E-12 
+          VJ     .64                             .6          
+           M     .33                             .3          
+          EG    1.1                                          
+
+
+**** 11/28/26 11:26:15 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC2-power_protect_overvoltage"  [ C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\power_verification-pspicefiles\schema
+
+
+ ****     MOSFET MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U6.PMOS       X_U6.NMOS       
+               PMOS            NMOS            
+       LEVEL    3               3            
+         TPG                   -1            
+           L  100.000000E-06  100.000000E-06 
+           W  100.000000E-06  100.000000E-06 
+         VTO   -1.1             1.972461     
+          KP   16.575090E-06   39.843970E-06 
+       GAMMA    1.865437        1.226998     
+         PHI     .850398         .731289     
+      LAMBDA    0               0            
+          RS  200.000000E-06                 
+          IS    0              10.000000E-15 
+          JS    0               0            
+          PB     .8              .8          
+        PBSW     .8              .8          
+          CJ    1.440390E-03  455.491400E-06 
+        CJSW    0               0            
+        CGSO    0               0            
+        CGDO    0               0            
+        CGBO    0               0            
+        NSUB  200.000000E+15   20.000000E+15 
+         NFS   20.000000E+09                 
+         TOX   25.000000E-09   52.000000E-09 
+          XJ  400.000000E-09    0            
+          UO  120                            
+       UCRIT   10.000000E+03   10.000000E+03 
+        VMAX    5.000000E+06                 
+       DELTA    0                            
+       THETA     .2                          
+         ETA    0                            
+       KAPPA    1.2                          
+      DIOMOD    1               1            
+         VFB    0               0            
+        LETA    0               0            
+        WETA    0               0            
+          U0    0               0            
+        TEMP    0               0            
+         VDD    5               5            
+       XPART    0               0            
+
+
+**** 11/28/26 11:26:15 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC2-power_protect_overvoltage"  [ C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\power_verification-pspicefiles\schema
+
+
+ ****     Resistor MODEL PARAMETERS
+
+
+******************************************************************************
+
+
+
+
+               X_U6.RTEMP      
+           R    1            
+         TC1    1.500000E-03 
+         TC2    1.000000E-06 
+
+
+INFO(ORPSIM-16627): The following imported models were detected in the design: X_D3.X1.DTRANS, X_D3.X1.TRANSF, X_D3.X1.TRANSR, X_U5.DIODE1, X_U5.DIODE2, X_U6.DBD, X_U6.NMOS, X_U6.PMOS
+
+ERROR(ORPSIM-16583): More than one imported model containing transistors or diodes is detected. To simulate this circuit, a minimum of 1 and a maximum of 4 traces are required. Reduce the number of traces and simulate again.
+
+
+ABORTING SIMULATION
+**** 11/28/26 11:26:15 **** PSpice 23.1.0 (30 January 2024) *** ID# 0 ********
+
+ ** Profile: "SCHEMATIC2-power_protect_overvoltage"  [ C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\power_verification-pspicefiles\schema
+
+
+ ****     JOB STATISTICS SUMMARY
+
+
+******************************************************************************
+
+
+
+Node counts:
+  Top level (NUNODS)                =           5
+  External (NCNODS)                 =          16
+  Total (NUMNOD)                    =          22
+
+Total device count (NUMEL)          =          13
+  Capacitors (C)                    =           3
+  Diodes (D)                        =           3
+  VCVS (E)                          =           0
+  VCCS (G)                          =           0
+  MosFETs (M)                       =           2
+  Resistors (R)                     =           4
+  Voltage Sources (V)               =           1
+
+Number of subcircuits (X)           =           3
+
+Matrix statistics:
+  Matrix size (NSTOP)               =          27
+  Initial no. elements (NTTAR)      =         107
+  No. elements w/ fillin (NTTBR)    =         107
+  No. fillins (IFILL)               =           0
+  No. overflows (NTTOV)             =           0
+  No. LU operations (IOPS)          =           0
+  Percent sparsity (PERSPA)         =      85.322
+
+Analysis statistics:
+  No. total time points (NUMTTP)    =           0
+  No. rejected time points (NUMRTP) =           0
+  No. iterations (NUMNIT)           =           0
+
+Load Threads                        =           1
+
+Runtime statistics:                       Seconds      Iterations
+  Matrix load                       =        0.00
+  Matrix solution                   =        0.00               1
+  Readin                            =        1.13
+  General setup                     =        1.91
+  CMI setup                     =        0.00
+  Setup                             =        0.00
+  DC sweep                          =        0.00               0
+  Bias point                        =        0.00               0
+  AC and noise                      =        0.00               0
+  Total transient analysis          =        0.00
+  Output                            =        0.00
+  Overhead                          =         .09
+  Total job time (using Solver 1)   =        3.81
+

@@ -1,0 +1,29 @@
+** Profile: "SCHEMATIC2-power_protect_overvoltage"  [ C:\Users\bahuy\OneDrive\Desktop\BTL_DIEN\power_verification-pspicefiles\schematic2\power_protect_overvoltage.sim ] 
+
+** Creating circuit file "power_protect_overvoltage.cir" 
+** WARNING: THIS AUTOMATICALLY GENERATED FILE MAY BE OVERWRITTEN BY SUBSEQUENT SIMULATIONS
+
+*Libraries: 
+* Profile Libraries :
+* Local Libraries :
+.INC "../../../ltspicemodels-master/ltspicemodels-master/ao3401a.mod" 
+.INC "../../../smbj-series-thermal-pspice/smbj_thermal_05-07-25_encrypted_w_17-2.lib" 
+.INC "../../../bzt52b10.lib" 
+.STMLIB "../../../smbj-series-thermal-pspice/smbj_thermal_05-07-25_encrypted_w_17-2.lib" 
+.STMLIB "../../../ltspicemodels-master/ltspicemodels-master/ao3401a.asy" 
+.STMLIB "../../../bzt52b10.lib" 
+* From [PSPICE NETLIST] section of C:\cds_spb_home\cdssetup\OrCAD_PSpiceTIPSpice_Install\23.1.0\PSpice.ini file:
+.lib "nom_pspti.lib" 
+.lib "nom.lib" 
+
+*Analysis directives: 
+.TRAN  0 4ms 0 1u 
+.OPTIONS ADVCONV
+.OPTIONS FILEMODELSEARCH
+.PROBE64 N([N02984])
+.PROBE64 N([N02980])
+.PROBE64 N([N03046])
+.INC "..\SCHEMATIC2.net" 
+
+
+.END

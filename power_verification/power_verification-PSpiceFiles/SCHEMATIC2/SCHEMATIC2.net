@@ -1,0 +1,10 @@
+* source POWER_VERIFICATION
+R_R6         0 N02980  100k TC=0,0 
+C_C7         0 N02984  22uf  TC=0,0 
+C_C6         N02984 0  100uf  
+X_U5         N02984 N02980 BZT52-B10 
+R_R5         N03040 N03046  0.05 TC=0,0 
+X_D3         0 N03046 SMBJ16A
+X_U6         N03046 N02980 N02984 AO3401A 
+V_V5         N03040 0  
++PULSE 12 24 1ms 10us 10us 1ms 5ms
